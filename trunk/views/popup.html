@@ -13,22 +13,16 @@ and open the template in the editor.
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <script>
             $(document).ready(function(){
-                POPUP.init();
-                dbDriver.db.transaction(
-                function(tx) {
-                    tx.executeSql("SELECT * FROM links", [],
-                    function(tx, result) {
-                        for(var i = 0; i < result.rows.length; i++) {
-                            document.write(result.rows.item(i)['link']);
-                        }
-                    }, null);
-                }
-            );
+                POPUP.init()
+                out="<table><tr><td>"+chrome.extension.getBackgroundPage().BG.currenttab.url+"</td></tr>";
+                out+="</table>";
+                $("#url").html(out)
             })
         </script>
     </head>
     <body>
-
+        <div id="url"></div>
+        <div id="website"></div>
     </body>
 </html>
 

@@ -1,34 +1,47 @@
 BG={
+    currenttab:"",
+    selectedWebsites:[],
+    contextMenueParentId:0,
     init:function(){
-        dbDriver.setup();
+        BG.loadData(Data);
+        BG.changeSelectedTab();
         BG.createContextMenu();
     },
     createContextMenu:function(){
         createProperties={
             "title":"share"
         };
-        var parent=chrome.contextMenus.create(createProperties);
+        BG.contextMenueParentId=chrome.contextMenus.create(createProperties);
+    },
+    share:function(sharedSite,tab){
+        window.open(sharedSite.url+tab);
+    },
+    setup:function(){
+        chrome.tabs.getSelected(null, function(tab) {
+            BG.currenttab=tab;
+        });
+    },
+    changeSelectedTab:function(){
+        BG.setup();
+        chrome.tabs.onSelectionChanged.addListener(function(){
+            chrome.tabs.getSelected(null, function(tab) {
+                BG.currenttab=tab;
+            });
+        })
+    },
+    createNewContextMenue:function(site,parentId){
         createProperties={
-            "title":"Facebook",
+            "title":site.name,
             "contexts":["all"],
             "onclick":function(OnClickData,tab){
-                window.open(Data.Facebook+tab.url);
-                dbDriver.insert(tab.url)
+                BG.share(site,tab.url);
             },
-            "parentId":parent
+            "parentId":parentId
         };
         chrome.contextMenus.create(createProperties);
-        createProperties={
-            "title":"Twitter",
-            "contexts":["all"],
-            "onclick":function(OnClickData,tab){
-                window.open(Data.Twitter+tab.url);
-                dbDriver.insert(tab.url)
-            },
-            "parentId":parent
-        };
-        chrome.contextMenus.create(createProperties);
-        
+    },
+    loadData:function(Data){
+        localStorage.Data=JSON.stringify(Data)
     }
     
 }

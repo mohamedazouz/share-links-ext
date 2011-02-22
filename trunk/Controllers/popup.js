@@ -1,6 +1,21 @@
 POPUP={
     init:function(){
-        dbDriver.setup();
-        //dbDriver.selectAll();
+        POPUP.showSelectedSites();
+    },
+    share:function(site){
+        chrome.extension.getBackgroundPage().BG.share(site,chrome.extension.getBackgroundPage().BG.currenttab.url)
+    },
+    showSelectedSites:function(){
+        out="<table>"
+        sites=chrome.extension.getBackgroundPage().BG.selectedWebsites;
+        for(i=0;i<sites.length;i++)
+        {
+            out+="<tr><td>"
+            site=JSON.stringify(sites[i])
+            out+="<button onclick='POPUP.share("+site+")' > Add " +sites[i].name+"</button>";
+            out+="</td></tr>";
+        }
+        out+="</table>"
+        $("#website").html(out)
     }
 }

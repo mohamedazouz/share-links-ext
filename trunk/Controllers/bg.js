@@ -14,7 +14,7 @@ BG={
         BG.contextMenueParentId=chrome.contextMenus.create(createProperties);
     },
     share:function(sharedSite,tab){
-        window.open(sharedSite.url+tab);
+        window.open(sharedSite.url+tab,"mywindow","width=500,height=400");
     },
     setup:function(){
         chrome.tabs.getSelected(null, function(tab) {

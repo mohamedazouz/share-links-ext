@@ -25,6 +25,7 @@ OPTION={
     addSite:function(site,i){
         OPTION.sites.websites[i].selected=true;
         chrome.extension.getBackgroundPage().BG.loadData(OPTION.sites) //save changes
+        OPTION.show();
         chrome.extension.getBackgroundPage().BG.selectedWebsites.push(site);
         chrome.extension.getBackgroundPage().BG.createNewContextMenue(site,chrome.extension.getBackgroundPage().BG.contextMenueParentId)
     }

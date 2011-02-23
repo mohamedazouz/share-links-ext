@@ -3,31 +3,30 @@ var Data={
     {
         'name':'Facebook',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'Twitter',
         'url':'http://twitter.com/share?url=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'Gmail',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'Hotmail',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'GoogleBookmarks',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'Linkedin',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
+        'contextMenuId':-1
     },{
         'name':'YahooMail',
         'url':'http://www.facebook.com/sharer.php?u=',
-        'selected':false
-    }
-    ]    
+        'contextMenuId':-1
+    }]    
 }

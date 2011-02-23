@@ -1,6 +1,7 @@
 POPUP={
     init:function(){
         POPUP.showSelectedSites();
+        POPUP.showpageurl();
     },
     share:function(site){
         chrome.extension.getBackgroundPage().BG.share(site,chrome.extension.getBackgroundPage().BG.currenttab.url)
@@ -17,5 +18,14 @@ POPUP={
         }
         out+="</table>"
         $("#website").html(out)
+    },
+    showpageurl:function(){
+        out="<table><tr><td>"+chrome.extension.getBackgroundPage().BG.currenttab.url+"</td></tr>";
+        out+="</table>";
+        $("#url").html(out);
+        $("#shorturl").html(JSON.parse(localStorage.shortUrl).message);
+    },
+    copyurl:function(){
+        chrome.extension.getBackgroundPage().BG.copyurl(JSON.parse(localStorage.shortUrl).message)
     }
 }

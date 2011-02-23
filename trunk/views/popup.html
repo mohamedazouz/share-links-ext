@@ -10,19 +10,18 @@ and open the template in the editor.
         <script type="text/javascript" src="../js/jquery.js"></script>
         <script type="text/javascript" src="../Controllers/popup.js"></script>
         <script type="text/javascript" src="../Controllers/bdConnector.js"></script>
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <script>
+        <script type="text/javascript">
             $(document).ready(function(){
                 POPUP.init()
-                out="<table><tr><td>"+chrome.extension.getBackgroundPage().BG.currenttab.url+"</td></tr>";
-                out+="</table>";
-                $("#url").html(out)
             })
+            
         </script>
     </head>
     <body>
-        <div id="url"></div>
-        <div id="website"></div>
+        <div id="url"></div><br>
+        <div id="website"></div><br>
+        <div id="shorturl"></div><br>
+        <button onclick="POPUP.copyurl()">Copy link</button>
     </body>
 </html>
 

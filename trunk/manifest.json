@@ -14,7 +14,7 @@
         "popup": "views/popup.html"
     },
     "permissions": [
-        "tabs","contextMenus"
+        "tabs","contextMenus" , "http://*/*","https://*/*"
     ],
     "options_page":"views/option.html"
 }

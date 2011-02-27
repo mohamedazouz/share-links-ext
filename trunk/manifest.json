@@ -2,7 +2,7 @@
     "name":"Easy Share",
     "version": "1.0",
     "description": "It shares text and urls in social networks !",
-    "background_page": "views/backgroundPage.html",
+    "background_page": "views/background.html",
     "icons":{
         "16": "views/images/logo.jpg",
         "48": "views/images/logo.jpg",

@@ -1,15 +1,16 @@
-BG={
+ShareLinksBG={
     selectedText:"",
     pageurl:"",
     init:function(){
-      BG.createContextMenu();
+      ShareLinksBG.createContextMenu();
     },
     createContextMenu:function(){
         createProperties={
             "title":"text",
             "contexts":["selection"],
             "onclick":function(OnClickData,tab){
-                BG.selectedText=OnClickData.selectionText
+                ShareLinksBG.selectedText=OnClickData.selectionText
+                console.log("selections:"+ShareLinksBG.selectedText)
             }
         };
         chrome.contextMenus.create(createProperties);
@@ -17,9 +18,13 @@ BG={
             "title":"share",
             "contexts":["page"],
             "onclick":function(OnClickData,tab){
-                BG.pageurl=tab.url
+                ShareLinksBG.pageurl=tab.url
+                console.log("URL:"+ShareLinksBG.pageurl)
             }
         };
         chrome.contextMenus.create(createProperties);
     }
 }
+$(function(){
+    ShareLinksBG.init();
+});

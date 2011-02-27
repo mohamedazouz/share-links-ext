@@ -15,7 +15,7 @@ BG={
         chrome.contextMenus.create(createProperties);
         createProperties={
             "title":"share",
-            "contexts":["all"],
+            "contexts":["page"],
             "onclick":function(OnClickData,tab){
                 BG.pageurl=tab.url
             }

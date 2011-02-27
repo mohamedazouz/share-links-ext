@@ -1,0 +1,20 @@
+{
+    "name":"Easy Share",
+    "version": "1.0",
+    "description": "It shares text and urls in social networks !",
+    "background_page": "views/backgroundPage.html",
+    "icons":{
+        "16": "views/images/logo.jpg",
+        "48": "views/images/logo.jpg",
+        "128": "views/images/logo.jpg"
+    },
+    "browser_action": {
+        "default_icon": "views/images/logo.jpg",
+        "default_title": "Share your Link !",
+        "popup": "views/popup.html"
+    },
+    "permissions": [
+        "contextMenus"
+    ],
+    "options_page":"views/option.html"
+}

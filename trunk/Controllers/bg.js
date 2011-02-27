@@ -1,0 +1,25 @@
+BG={
+    selectedText:"",
+    pageurl:"",
+    init:function(){
+      BG.createContextMenu();
+    },
+    createContextMenu:function(){
+        createProperties={
+            "title":"text",
+            "contexts":["selection"],
+            "onclick":function(OnClickData,tab){
+                BG.selectedText=OnClickData.selectionText
+            }
+        };
+        chrome.contextMenus.create(createProperties);
+        createProperties={
+            "title":"share",
+            "contexts":["all"],
+            "onclick":function(OnClickData,tab){
+                BG.pageurl=tab.url
+            }
+        };
+        chrome.contextMenus.create(createProperties);
+    }
+}

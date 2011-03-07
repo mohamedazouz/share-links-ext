@@ -14,7 +14,7 @@
         "popup": "views/popup.html"
     },
     "permissions": [
-        "contextMenus", "http://goo.gl/*"
+        "contextMenus", "http://*/*","tabs"
     ],
     "options_page":"views/option.html"
 }

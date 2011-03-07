@@ -92,7 +92,7 @@ ShareLinksBG={
             window.localStorage.logged=false;
             return;
         }
-        url="http://41.178.64.38:80/sharing_proxy/get_fb_token.php"
+        url="http://local.activedd.com/azouz/get_fb_token.php"
         try{
             $.ajax({
                 url:url,
@@ -117,7 +117,7 @@ ShareLinksBG={
     },
     open:function(){
         ShareLinksBG.Authenticate(0);
-        url=href="https://www.facebook.com/dialog/oauth?client_id=185034264867265&redirect_uri=http://41.178.64.38:80/sharing_proxy/fb_authenticate.php?code&scope=publish_stream,offline_access"
+        url=href="https://www.facebook.com/dialog/oauth?client_id=185034264867265&redirect_uri=http://local.activedd.com/azouz/fb_authenticate.php?code&scope=publish_stream,offline_access"
         chrome.tabs.create({
             url:url,
             selected:true

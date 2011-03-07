@@ -44,7 +44,8 @@ ShareLinksBG={
             "onclick":function(OnClickData,tab){
                 ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
-                alert(tab.url)
+                url="http://twitter.com/share?url="+ShareLinksBG.pageurl+"&text="+$("#text").val()
+                window.open(url,"mywindow","width=500,height=400");
             },
             "parentId":SharingStaticData.sharingParentID
         };
@@ -81,6 +82,46 @@ ShareLinksBG={
     },
     share:function(){
         alert("share......................")
+    },
+    Authenticate:function(count){
+        if(! count){
+            count=0;
+        }
+        count=parseInt(count);
+        if(count == 59){
+            window.localStorage.logged=false;
+            return;
+        }
+        url="http://41.178.64.38:80/sharing_proxy/get_fb_token.php"
+        try{
+            $.ajax({
+                url:url,
+                dataType:'json',
+                success:function(res){
+                    alert("=>  "+res)
+                },
+                error:function(){
+                    if(count < 60){
+                        window.setTimeout(function(){
+                            ShareLinksBG.Authenticate(count+1);
+                        }, 1000 * 2);
+                    }
+                }
+            });
+        }catch (e){
+            window.setTimeout(function(){
+                ShareLinksBG.Authenticate(count+1);
+            }, 1000 * 2);
+        }
+
+    },
+    open:function(){
+        ShareLinksBG.Authenticate(0);
+        url=href="https://www.facebook.com/dialog/oauth?client_id=185034264867265&redirect_uri=http://41.178.64.38:80/sharing_proxy/fb_authenticate.php?code&scope=publish_stream,offline_access"
+        chrome.tabs.create({
+            url:url,
+            selected:true
+        });
     }
 }
 $(function(){

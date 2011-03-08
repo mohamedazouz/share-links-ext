@@ -98,7 +98,7 @@ ShareLinksBG={
                 url:url,
                 dataType:'json',
                 success:function(res){
-                    alert("=>  "+res)
+                    window.localStorage.access_token=JSON.stringify(res);
                 },
                 error:function(){
                     if(count < 60){
@@ -121,6 +121,17 @@ ShareLinksBG={
         chrome.tabs.create({
             url:url,
             selected:true
+        });
+    },
+    sharefacebook:function(message,link){
+        //alert("hello " + window.localStorage.access_token + " mesg " +  message  + " link " +link)
+        token=JSON.parse(window.localStorage.access_token);
+        FB.api('/me/feed','post',{
+            access_token:token.access_token,
+            message:message,
+            link:link
+        }, function(response) {
+              alert(JSON.stringify(response));
         });
     }
 }

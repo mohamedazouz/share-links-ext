@@ -79,6 +79,7 @@ ShareLinksBG={
         }
         xmlhttp.send(null);
         ShareLinksBG.copyurl(response.message);
+        return response.message;
     },
     share:function(){
         alert("share......................")
@@ -135,7 +136,7 @@ ShareLinksBG={
         });
     },
     opentwitter:function(){
-      ShareLinksBG.AuthenticateTwitter(0);
+        ShareLinksBG.AuthenticateTwitter(0);
         url=href="http://local.activedd.com/azouz/twitter_redirect.php"
         chrome.tabs.create({
             url:url,
@@ -157,8 +158,7 @@ ShareLinksBG={
                 url:url,
                 dataType:'json',
                 success:function(res){
-                  //  window.localStorage.access_token=JSON.stringify(res);
-                  alert(JSON.stringify(res))
+                    window.localStorage.twitter_access_token=JSON.stringify(res);
                 },
                 error:function(){
                     if(count < 60){
@@ -174,6 +174,29 @@ ShareLinksBG={
             }, 1000 * 2);
         }
 
+    },
+    shareTwitter:function(message,link){
+        token=JSON.parse(window.localStorage.twitter_access_token);
+        url="http://local.activedd.com/azouz/twitter_update.php";
+        //url="http://localhost/sharing_proxy/twitter_update.php";
+        
+        json={
+            oauth_token:token.oauth_token,
+            oauth_token_secret:token.oauth_token_secret,
+            status:message,
+            link:ShareLinksBG.getShortenerUrl(link)
+        }
+        $.ajax({
+            url:url,
+            dataType: "html",
+            data:json,
+            success:function(data){
+                alert("hi")
+            },
+            error:function(data){
+                alert(JSON.stringify(data))
+            }
+        })
     }
 }
 $(function(){

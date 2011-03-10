@@ -2,26 +2,28 @@ SharingPopup={
     init:function(){
       
     },
-    openfacebook:function(){
-        chrome.extension.getBackgroundPage().ShareLinksBG.openfacebook();
-        
+    open:function(type){
+        var redirecturl;
+        var tokenurl;
+        if(type=="facebook"){
+            redirecturl=SharingStaticData.facebookRedirecturl;
+            tokenurl=SharingStaticData.facebookAuthTokenurl;
+        }
+        if(type=="twitter"){
+            redirecturl=SharingStaticData.twitterRedirecturl;
+            tokenurl=SharingStaticData.twitterAuthTokenurl;
+        }
+        chrome.extension.getBackgroundPage().ShareLinksBG.open(redirecturl,tokenurl);
     },
-    get_access_token:function(){
-
-        url="http://41.178.64.38:80/sharing_proxy/get_fb_token.php"
-
-    },
-    sharefacebook:function(){
+    share:function(type){
+        json={
+            type:type
+        }
+        if(type=="twitter"){
+            json.link=SharingStaticData.twitterUpdatestatus;
+        }
         chrome.tabs.getSelected(null,function(tab){
-            chrome.extension.getBackgroundPage().ShareLinksBG.sharefacebook($("#msg").val(), tab.url);
-        })
-    },
-    opentwitter:function(){
-        chrome.extension.getBackgroundPage().ShareLinksBG.opentwitter();
-    },
-    shareTwitter:function(){
-        chrome.tabs.getSelected(null,function(tab){
-            chrome.extension.getBackgroundPage().ShareLinksBG.shareTwitter($("#msg").val(), tab.url);
+            chrome.extension.getBackgroundPage().ShareLinksBG.share($("#msg").val(), tab.url,json);
         })
     }
 }

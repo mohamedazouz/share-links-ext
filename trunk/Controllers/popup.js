@@ -18,6 +18,11 @@ SharingPopup={
     },
     opentwitter:function(){
         chrome.extension.getBackgroundPage().ShareLinksBG.opentwitter();
+    },
+    shareTwitter:function(){
+        chrome.tabs.getSelected(null,function(tab){
+            chrome.extension.getBackgroundPage().ShareLinksBG.shareTwitter($("#msg").val(), tab.url);
+        })
     }
 }
 $(function(){

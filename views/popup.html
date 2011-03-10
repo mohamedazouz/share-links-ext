@@ -9,10 +9,11 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="../Controllers/popup.js"></script>
+        <script type="text/javascript" src="../Controllers/data.js"></script>
     </head>
     <body>
-        <a onclick="SharingPopup.openfacebook()" href="#"> faceBook</a> <br>
-        <a onclick="SharingPopup.opentwitter()" href="#"> Twitter</a>
+        <a onclick="SharingPopup.open('facebook')" href="#"> faceBook</a> <br>
+        <a onclick="SharingPopup.open('twitter')" href="#"> Twitter</a>
         <div>
             <table>
                 <tr>
@@ -22,7 +23,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td>
-                        <button id="share" onclick="SharingPopup.sharefacebook()">share facebook</button>
+                        <button id="share" onclick="SharingPopup.share('facebook')">share facebook</button>
                     </td>
                 </tr>
                 <tr><td></td></tr>
@@ -30,7 +31,7 @@ and open the template in the editor.
                 <tr><td></td></tr>
                 <tr>
                     <td>
-                        <button id="share" onclick="SharingPopup.shareTwitter()">share twitter</button>
+                        <button id="share" onclick="SharingPopup.share('twitter')">share twitter</button>
                     </td>
                 </tr>
             </table>

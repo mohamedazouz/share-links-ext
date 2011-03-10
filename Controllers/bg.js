@@ -20,7 +20,7 @@ ShareLinksBG={
             "contexts":["page"]
         };
         SharingStaticData.sharingParentID=chrome.contextMenus.create(createProperties);
-        ShareLinksBG.setData(SharingStaticData)
+        //ShareLinksBG.setData(SharingStaticData)
         createProperties={
             "title":"Copy Shortener url",
             "contexts":["page"],
@@ -49,6 +49,7 @@ ShareLinksBG={
                     );
                 // Then show the notification.
                 notification.show();
+                
             },
             "parentId":SharingStaticData.sharingParentID
         };
@@ -84,122 +85,82 @@ ShareLinksBG={
         ShareLinksBG.copyurl(response.message);
         return response.message;
     },
-    share:function(){
-        alert("share......................")
-    },
-    Authenticatefacebook:function(count){
-        if(! count){
-            count=0;
-        }
-        count=parseInt(count);
-        if(count == 59){
-            window.localStorage.logged=false;
-            return;
-        }
-        url="http://local.activedd.com/azouz/get_fb_token.php"
-        try{
-            $.ajax({
-                url:url,
-                dataType:'json',
-                success:function(res){
-                    window.localStorage.access_token=JSON.stringify(res);
-                },
-                error:function(){
-                    if(count < 60){
-                        window.setTimeout(function(){
-                            ShareLinksBG.Authenticatefacebook(count+1);
-                        }, 1000 * 2);
-                    }
-                }
+    share:function(message,link,jsonData){
+        if(jsonData.type=="facebook"){
+            token=JSON.parse(window.localStorage.access_token);
+            FB.api('/me/feed','post',{
+                access_token:token.access_token,
+                message:message,
+                link:link
+            }, function(response) {
+                  alert(JSON.stringify(response));
             });
-        }catch (e){
-            window.setTimeout(function(){
-                ShareLinksBG.Authenticatefacebook(count+1);
-            }, 1000 * 2);
         }
-
-    },
-    openfacebook:function(){
-        ShareLinksBG.Authenticatefacebook(0);
-        url=href="https://www.facebook.com/dialog/oauth?client_id=185034264867265&redirect_uri=http://local.activedd.com/azouz/fb_authenticate.php?code&scope=publish_stream,offline_access"
-        chrome.tabs.create({
-            url:url,
-            selected:true
-        });
-    },
-    sharefacebook:function(message,link){
-        //alert("hello " + window.localStorage.access_token + " mesg " +  message  + " link " +link)
-        token=JSON.parse(window.localStorage.access_token);
-        FB.api('/me/feed','post',{
-            access_token:token.access_token,
-            message:message,
-            link:link
-        }, function(response) {
-              alert(JSON.stringify(response));
-        });
-    },
-    opentwitter:function(){
-        ShareLinksBG.AuthenticateTwitter(0);
-        url=href="http://local.activedd.com/azouz/twitter_redirect.php"
-        chrome.tabs.create({
-            url:url,
-            selected:true
-        });
-    },
-    AuthenticateTwitter:function(count){
-        if(! count){
-            count=0;
-        }
-        count=parseInt(count);
-        if(count == 59){
-            window.localStorage.logged=false;
-            return;
-        }
-        url="http://local.activedd.com/azouz/get_twitter_token.php"
-        try{
-            $.ajax({
-                url:url,
-                dataType:'json',
-                success:function(res){
-                    window.localStorage.twitter_access_token=JSON.stringify(res);
-                },
-                error:function(){
-                    if(count < 60){
-                        window.setTimeout(function(){
-                            ShareLinksBG.AuthenticateTwitter(count+1);
-                        }, 1000 * 2);
-                    }
-                }
-            });
-        }catch (e){
-            window.setTimeout(function(){
-                ShareLinksBG.AuthenticateTwitter(count+1);
-            }, 1000 * 2);
-        }
-
-    },
-    shareTwitter:function(message,link){
-        token=JSON.parse(window.localStorage.twitter_access_token);
-        url="http://local.activedd.com/azouz/twitter_update.php";
-        //url="http://localhost/sharing_proxy/twitter_update.php";
-        
-        json={
-            oauth_token:token.oauth_token,
-            oauth_token_secret:token.oauth_token_secret,
-            status:message,
-            link:ShareLinksBG.getShortenerUrl(link)
-        }
-        $.ajax({
-            url:url,
-            dataType: "html",
-            data:json,
-            success:function(data){
-                alert("Done !");
-            },
-            error:function(data){
-                alert(JSON.stringify(data));
+        if(jsonData.type=="twitter"){
+            token=JSON.parse(window.localStorage.twitter_access_token);
+            url=jsonData.link;
+            json={
+                oauth_token:token.oauth_token,
+                oauth_token_secret:token.oauth_token_secret,
+                status:message,
+                link:ShareLinksBG.getShortenerUrl(link)
             }
-        })
+            $.ajax({
+                url:url,
+                dataType: "html",
+                data:json,
+                success:function(data){
+                    alert("Done !");
+                },
+                error:function(data){
+                    alert(JSON.stringify(data));
+                }
+            })
+        }
+
+    },
+    open:function(redirectLink,tokenlink){
+        ShareLinksBG.Authenticate(0,tokenlink);
+        chrome.tabs.create({
+            url:redirectLink,
+            selected:true
+        });
+    },
+    Authenticate:function(count,link){
+        if(! count){
+            count=0;
+        }
+        count=parseInt(count);
+        if(count == 59){
+            window.localStorage.logged=false;
+            return;
+        }
+        url=link
+        try{
+            $.ajax({
+                url:url,
+                dataType:'json',
+                success:function(res){
+                    if(res.oauth_token){ //twitter auth
+                        window.localStorage.twitter_access_token=JSON.stringify(res);
+                    }else{//facebook auth
+                        window.localStorage.access_token=JSON.stringify(res);
+                    }
+                },
+                error:function(){
+                    if(count < 60){
+                        window.setTimeout(function(){
+                            ShareLinksBG.Authenticate(count+1,link);
+                        }, 1000 * 2);
+                    }
+                }
+            });
+        }catch (e){
+            window.setTimeout(function(){
+                ShareLinksBG.Authenticate(count+1,link);
+            }, 1000 * 2);
+        }
+
     }
 }
 $(function(){

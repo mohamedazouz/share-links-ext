@@ -44,8 +44,11 @@ ShareLinksBG={
             "onclick":function(OnClickData,tab){
                 ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
-                url="http://twitter.com/share?url="+ShareLinksBG.pageurl+"&text="+$("#text").val()
-                window.open(url,"mywindow","width=500,height=400");
+                var notification = webkitNotifications.createHTMLNotification(
+                    'share.html'  // html url - can be relative
+                    );
+                // Then show the notification.
+                notification.show();
             },
             "parentId":SharingStaticData.sharingParentID
         };
@@ -191,10 +194,10 @@ ShareLinksBG={
             dataType: "html",
             data:json,
             success:function(data){
-                alert("hi")
+                alert("Done !");
             },
             error:function(data){
-                alert(JSON.stringify(data))
+                alert(JSON.stringify(data));
             }
         })
     }

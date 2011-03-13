@@ -53,14 +53,14 @@ ShareLinksBG={
             "title":name,
             "contexts":["all"],
             "onclick":function(OnClickData,tab){
-                /*ShareLinksBG.pageurl=tab.url
+                ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
                 var notification = webkitNotifications.createHTMLNotification(
                     'share.html'  // html url - can be relative
                     );
                 // Then show the notification.
-                notification.show();*/
-                alert("hi");
+                notification.show();
+            //alert("hi");
             },
             "parentId":parendId
         };
@@ -73,9 +73,10 @@ ShareLinksBG={
         for(i=0;i<sites.websites.length;i++)
         {
             if(sites.websites[i].contextMenuId && sites.websites[i].contextMenuId!=-1){
-                ShareLinksBG.createContextMenu(sites.websites[i].name,pId);
+                sites.websites[i].contextMenuId=ShareLinksBG.createContextMenu(sites.websites[i].name,pId);
             }
         }
+        ShareLinksBG.setData(sites);
     },
     copyurl:function(text){
         var input = document.getElementById('shorturl');

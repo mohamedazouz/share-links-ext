@@ -3,7 +3,12 @@ ShareLinksBG={
     pageurl:"",
     init:function(){
         ShareLinksBG.createMainContextMenu();
-        ShareLinksBG.createContextMenu("share");
+        if(!localStorage.sharingStaticData){
+            ShareLinksBG.setData(SharingStaticData.sites)
+        }else
+        {
+            ShareLinksBG.setup();
+        }
     },
     createMainContextMenu:function(){
         createProperties={
@@ -19,7 +24,7 @@ ShareLinksBG={
             "title":"share",
             "contexts":["page"]
         };
-        SharingStaticData.sharingParentID=chrome.contextMenus.create(createProperties);
+        ID=chrome.contextMenus.create(createProperties);
         //ShareLinksBG.setData(SharingStaticData)
         createProperties={
             "title":"Copy Shortener url",
@@ -27,9 +32,15 @@ ShareLinksBG={
             "onclick":function(OnClickData,tab){
                 ShareLinksBG.getShortenerUrl(tab.url)
             },
-            "parentId":SharingStaticData.sharingParentID
+            "parentId":ID
         };
         chrome.contextMenus.create(createProperties);
+        createProperties={
+            "title":"share",
+            "contexts":["all"],
+            "parentId":ID
+        };
+        localStorage.sharingParentID=chrome.contextMenus.create(createProperties);
     },
     setData:function(Data){
         localStorage.sharingStaticData=JSON.stringify(Data);
@@ -37,23 +48,34 @@ ShareLinksBG={
     getdata:function(){
         return localStorage.sharingStaticData;
     },
-    createContextMenu:function(name){
+    createContextMenu:function(name,parendId){
         createProperties={
             "title":name,
             "contexts":["all"],
             "onclick":function(OnClickData,tab){
-                ShareLinksBG.pageurl=tab.url
+                /*ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
                 var notification = webkitNotifications.createHTMLNotification(
                     'share.html'  // html url - can be relative
                     );
                 // Then show the notification.
-                notification.show();
-                
+                notification.show();*/
+                alert("hi");
             },
-            "parentId":SharingStaticData.sharingParentID
+            "parentId":parendId
         };
-        chrome.contextMenus.create(createProperties);
+        id=chrome.contextMenus.create(createProperties);
+        return id;
+    },
+    setup:function(){
+        pId= parseInt(localStorage.sharingParentID);
+        sites=JSON.parse(localStorage.sharingStaticData);
+        for(i=0;i<sites.websites.length;i++)
+        {
+            if(sites.websites[i].contextMenuId && sites.websites[i].contextMenuId!=-1){
+                ShareLinksBG.createContextMenu(sites.websites[i].name,pId);
+            }
+        }
     },
     copyurl:function(text){
         var input = document.getElementById('shorturl');

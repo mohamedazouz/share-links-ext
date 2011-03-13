@@ -8,7 +8,25 @@ SharingStaticData={
     twitterRedirecturl:"http://local.activedd.com/azouz/twitter_redirect.php",
     facebookAuthTokenurl:"http://local.activedd.com/azouz/get_fb_token.php",
     twitterAuthTokenurl:"http://local.activedd.com/azouz/get_twitter_token.php",
-    twitterUpdatestatus:"http://local.activedd.com/azouz/twitter_update.php"
+    twitterUpdatestatus:"http://local.activedd.com/azouz/twitter_update.php",
+    sites:{
+        websites:[
+        {
+            'name':'Facebook'
+        },{
+            'name':'Twitter'
+        },{
+            'name':'Gmail'
+        },{
+            'name':'Hotmail'
+        },{
+            'name':'GoogleBookmarks'
+        },{
+            'name':'Linkedin'
+        },{
+            'name':'YahooMail'
+        }]
+    }
 
 }
 

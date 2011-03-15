@@ -12,20 +12,24 @@ SharingStaticData={
     sites:{
         websites:[
         {
-            'name':'Facebook'
+            'name':'Facebook',
+            'value':'facebook'
         },{
-            'name':'Twitter'
+            'name':'Twitter',
+            'value':"twitter"
+        }/*,{
+            'name':'Gmail',
+            'value':"gmail"
         },{
-            'name':'Gmail'
+            'name':'GoogleBookmarks',
+            'value':"google"   
         },{
-            'name':'Hotmail'
+            'name':'Linkedin',
+            'value':"linked"
         },{
-            'name':'GoogleBookmarks'
-        },{
-            'name':'Linkedin'
-        },{
-            'name':'YahooMail'
-        }]
+            'name':'YahooMail',
+            'value':"yahoo"
+        }*/]
     }
 
 }

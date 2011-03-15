@@ -8,31 +8,33 @@ and open the template in the editor.
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="../Controllers/popup.js"></script>
+        <script type="text/javascript" src="../Controllers/share.js"></script>
+        <script type="text/javascript" src="../Controllers/data.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script>
+            $(document).ready(function(){  
+                site=JSON.parse(localStorage.onclickedcontext);
+                out="<button onclick='SharingPopup.share('facebook') '>";
+                //out+=site.value;
+                //out+="')'> share "+site.name;
+                out+=site.name;
+                out+="</button>";
+                $("#share").html(out);
+            })
+        </script>
     </head>
     <body>
-        <div>
-            <table>
-                <tr>
-                    <td>
-                        <input type="text" name="msg" id="msg">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="share" onclick="SharingPopup.sharefacebook()">share facebook</button>
-                    </td>
-                </tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td>
-                        <button id="share" onclick="SharingPopup.shareTwitter()">share twitter</button>
-                    </td>
-                </tr>
-            </table>
+
+        <div class="container">
+            <div class="logo f"><img src="images/logo.png" width="76" height="37" /></div>
+            <div class="link-cont f-r" id="shareitem">
+<!--                <a href="" class="f-r"><img src="images/twitter.png" width="31" height="32" alt="twitter" /></a>
+                <a href="" class="twitter f">twitter</a>-->
+            </div>
+            <textarea name="" cols="" rows="" class="txt-area" id="msg"></textarea>
+            <input name="" type="submit" class="send-btn f-r" value="أرسل" onclick="SharingShare.share()"/>
         </div>
+
     </body>
 </html>
 

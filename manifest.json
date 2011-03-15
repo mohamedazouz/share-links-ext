@@ -4,12 +4,12 @@
     "description": "It shares text and urls in social networks !",
     "background_page": "views/background.html",
     "icons":{
-        "16": "views/images/logo.jpg",
-        "48": "views/images/logo.jpg",
-        "128": "views/images/logo.jpg"
+        "16": "views/images/logo.png",
+        "48": "views/images/logo.png",
+        "128": "views/images/logo.png"
     },
     "browser_action": {
-        "default_icon": "views/images/logo.jpg",
+        "default_icon": "views/images/logo.png",
         "default_title": "Share your Link !",
         "popup": "views/popup.html"
     },

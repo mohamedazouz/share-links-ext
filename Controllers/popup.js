@@ -3,6 +3,9 @@ SharingPopup={
         chrome.tabs.getSelected(null,function(tab){
             $("#shorturls").html(chrome.extension.getBackgroundPage().ShareLinksBG.getShortenerUrl(tab.url));
         })
+        if(!localStorage.shortpopup ||localStorage.shortpopup=="false"){
+            $("#short").hide();
+        }
     },
     open:function(type){
         var redirecturl;

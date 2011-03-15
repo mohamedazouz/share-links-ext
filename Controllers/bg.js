@@ -11,6 +11,16 @@ ShareLinksBG={
         }
     },
     createMainContextMenu:function(){
+        if(localStorage.shortrightclick!="false"){
+            localStorage.shortrightclick=ShareLinksBG.createCopyshortContextMenu();
+        }
+        createProperties={
+            "title":"share",
+            "contexts":["all"]
+        };
+        localStorage.sharingParentID=chrome.contextMenus.create(createProperties);
+    },
+    createCopyshortContextMenu:function(){
         createProperties={
             "title":"Copy Shortener url",
             "contexts":["page"],
@@ -18,12 +28,8 @@ ShareLinksBG={
                 ShareLinksBG.getShortenerUrl(tab.url)
             }
         };
-        chrome.contextMenus.create(createProperties);
-        createProperties={
-            "title":"share",
-            "contexts":["all"]
-        };
-        localStorage.sharingParentID=chrome.contextMenus.create(createProperties);
+        id=chrome.contextMenus.create(createProperties);
+        return id;
     },
     setData:function(Data){
         localStorage.sharingStaticData=JSON.stringify(Data);

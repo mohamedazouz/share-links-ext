@@ -72,8 +72,20 @@ SharingOptions={
         chrome.extension.getBackgroundPage().ShareLinksBG.open(redirecturl,tokenurl);
     },
     save:function(){
-        alert($("#rightclick").css());
-        alert($("#popup").val());
+        
+        if($("#popup").attr('checked')){
+            localStorage.shortpopup=true;
+        }else
+        {
+            localStorage.shortpopup=false;
+        }
+        if($("#rightclick").attr('checked')){
+            localStorage.shortrightclick=chrome.extension.getBackgroundPage().ShareLinksBG.createCopyshortContextMenu();
+        }else
+        {
+            chrome.contextMenus.remove(parseInt(localStorage.shortrightclick));
+            localStorage.shortrightclick=false;
+        }
     }
 }
 

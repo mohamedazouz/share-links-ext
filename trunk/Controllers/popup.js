@@ -1,6 +1,8 @@
 SharingPopup={
     init:function(){
-      
+        chrome.tabs.getSelected(null,function(tab){
+            $("#shorturls").html(chrome.extension.getBackgroundPage().ShareLinksBG.getShortenerUrl(tab.url));
+        })
     },
     open:function(type){
         var redirecturl;
@@ -24,6 +26,12 @@ SharingPopup={
         }
         chrome.tabs.getSelected(null,function(tab){
             chrome.extension.getBackgroundPage().ShareLinksBG.share($("#msg").val(), tab.url,json);
+        })
+    },
+    openOptionPage:function(){
+        chrome.tabs.create({
+            url:"views/option.html",
+            selected:true
         })
     }
 }

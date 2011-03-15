@@ -12,33 +12,16 @@ ShareLinksBG={
     },
     createMainContextMenu:function(){
         createProperties={
-            "title":"text",
-            "contexts":["selection"],
+            "title":"Copy Shortener url",
+            "contexts":["page"],
             "onclick":function(OnClickData,tab){
-                ShareLinksBG.selectedText=OnClickData.selectionText
-                console.log("selections:"+ShareLinksBG.selectedText)
+                ShareLinksBG.getShortenerUrl(tab.url)
             }
         };
         chrome.contextMenus.create(createProperties);
         createProperties={
             "title":"share",
-            "contexts":["page"]
-        };
-        ID=chrome.contextMenus.create(createProperties);
-        //ShareLinksBG.setData(SharingStaticData)
-        createProperties={
-            "title":"Copy Shortener url",
-            "contexts":["page"],
-            "onclick":function(OnClickData,tab){
-                ShareLinksBG.getShortenerUrl(tab.url)
-            },
-            "parentId":ID
-        };
-        chrome.contextMenus.create(createProperties);
-        createProperties={
-            "title":"share",
-            "contexts":["all"],
-            "parentId":ID
+            "contexts":["all"]
         };
         localStorage.sharingParentID=chrome.contextMenus.create(createProperties);
     },
@@ -55,12 +38,17 @@ ShareLinksBG={
             "onclick":function(OnClickData,tab){
                 ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
-                var notification = webkitNotifications.createHTMLNotification(
-                    'share.html'  // html url - can be relative
-                    );
-                // Then show the notification.
-                notification.show();
-            //alert("hi");
+                //alert(OnClickData.menuItemId);
+                site=ShareLinksBG.getContextMenueInfo(OnClickData.menuItemId)
+
+                site.url=tab.url;
+                site.text=OnClickData.selectionText;
+                localStorage.onclickedcontext=JSON.stringify(site);
+                chrome.tabs.create({
+                    url:"views/share.html",
+                    selected:true
+                })
+            //sites.websites[i].contextMenuId
             },
             "parentId":parendId
         };
@@ -106,7 +94,7 @@ ShareLinksBG={
         }
         xmlhttp.send(null);
         ShareLinksBG.copyurl(response.message);
-        return response.message;
+        return response.message;    
     },
     share:function(message,link,jsonData){
         if(jsonData.type=="facebook"){
@@ -184,6 +172,16 @@ ShareLinksBG={
             }, 1000 * 2);
         }
 
+    },
+    getContextMenueInfo:function(id){
+        sites=JSON.parse(localStorage.sharingStaticData);
+        for(i=0;i<sites.websites.length;i++)
+        {
+            if(sites.websites[i].contextMenuId==id){
+                return sites.websites[i];
+            }
+        }
+        return null;
     }
 }
 $(function(){

@@ -1,7 +1,8 @@
+var background=chrome.extension.getBackgroundPage();
 SharingPopup={
     init:function(){
         chrome.tabs.getSelected(null,function(tab){
-            $("#shorturls").html(chrome.extension.getBackgroundPage().ShareLinksBG.getShortenerUrl(tab.url));
+            $("#shorturls").html(background.ShareLinksBG.getShortenerUrl(tab.url));
         })
         if(!localStorage.shortpopup ||localStorage.shortpopup=="false"){
             $("#short").hide();
@@ -18,7 +19,7 @@ SharingPopup={
             redirecturl=SharingStaticData.twitterRedirecturl;
             tokenurl=SharingStaticData.twitterAuthTokenurl;
         }
-        chrome.extension.getBackgroundPage().ShareLinksBG.open(redirecturl,tokenurl);
+        background.ShareLinksBG.open(redirecturl,tokenurl);
     },
     share:function(type){
         json={
@@ -28,7 +29,7 @@ SharingPopup={
             json.link=SharingStaticData.twitterUpdatestatus;
         }
         chrome.tabs.getSelected(null,function(tab){
-            chrome.extension.getBackgroundPage().ShareLinksBG.share($("#msg").val(), tab.url,json);
+            background.ShareLinksBG.share($("#msg").val(), tab.url,json);
         })
     },
     openOptionPage:function(){

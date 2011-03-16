@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+var background=chrome.extension.getBackgroundPage();
 SharingShare={
     site:"",
     init:function(){
@@ -22,7 +23,7 @@ SharingShare={
             json.link=SharingStaticData.twitterUpdatestatus;
         }
         
-        chrome.extension.getBackgroundPage().ShareLinksBG.share($("#msg").val(), site.url,json);
+        background.ShareLinksBG.share($("#msg").val(), site.url,json);
     }
 }
 

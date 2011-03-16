@@ -5,10 +5,19 @@ ShareLinksBG={
         ShareLinksBG.createMainContextMenu();
         if(!localStorage.sharingStaticData){
             ShareLinksBG.setData(SharingStaticData.sites)
-        }else
-        {
+        }else{
             ShareLinksBG.setup();
         }
+        if(! window.localStorage.lang){
+            window.localStorage.lang=ShareLinksBG.getNavigatorLang();
+        }
+    },
+    getNavigatorLang:function(){
+        var lang=window.navigator.language;
+        if(lang.indexOf("ar")!= -1){
+            return 'ar';
+        }
+        return 'en';
     },
     createMainContextMenu:function(){
         if(localStorage.shortrightclick!="false"){
@@ -64,8 +73,7 @@ ShareLinksBG={
     setup:function(){
         pId= parseInt(localStorage.sharingParentID);
         sites=JSON.parse(localStorage.sharingStaticData);
-        for(i=0;i<sites.websites.length;i++)
-        {
+        for(i=0;i<sites.websites.length;i++){
             if(sites.websites[i].contextMenuId && sites.websites[i].contextMenuId!=-1){
                 sites.websites[i].contextMenuId=ShareLinksBG.createContextMenu(sites.websites[i].name,pId);
             }
@@ -181,8 +189,7 @@ ShareLinksBG={
     },
     getContextMenueInfo:function(id){
         sites=JSON.parse(localStorage.sharingStaticData);
-        for(i=0;i<sites.websites.length;i++)
-        {
+        for(i=0;i<sites.websites.length;i++){
             if(sites.websites[i].contextMenuId==id){
                 return sites.websites[i];
             }

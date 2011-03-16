@@ -2,6 +2,7 @@ var background=chrome.extension.getBackgroundPage();
 SharingPopup={
     init:function(){
         chrome.tabs.getSelected(null,function(tab){
+            //please check here if the url is http or https before sharing.
             $("#shorturls").html(background.ShareLinksBG.getShortenerUrl(tab.url));
         })
         if(!localStorage.shortpopup ||localStorage.shortpopup=="false"){

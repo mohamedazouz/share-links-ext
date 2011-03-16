@@ -88,6 +88,7 @@ ShareLinksBG={
         document.execCommand('Copy');
     },
     getShortenerUrl:function(url){
+        //why u didn't use jquery ajax.
         var response;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://goo.gl/api/shorten?url=" +encodeURIComponent(url), false);
@@ -108,8 +109,9 @@ ShareLinksBG={
                 };
         }
         xmlhttp.send(null);
+        //in slow connections this command will be reached
         ShareLinksBG.copyurl(response.message);
-        return response.message;    
+        return response.message;
     },
     share:function(message,link,jsonData){
         if(jsonData.type=="facebook"){
@@ -136,6 +138,8 @@ ShareLinksBG={
                 dataType: "html",
                 data:json,
                 success:function(data){
+                    //never show an alert.
+                    //and in testing cases you'd better use console.log() insted of alerts.
                     alert("Done !");
                 },
                 error:function(data){

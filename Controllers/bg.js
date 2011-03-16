@@ -2,6 +2,7 @@ ShareLinksBG={
     selectedText:"",
     pageurl:"",
     init:function(){
+        localStorage.shortrightclick=false;
         ShareLinksBG.createMainContextMenu();
         if(!localStorage.sharingStaticData){
             ShareLinksBG.setData(SharingStaticData.sites)

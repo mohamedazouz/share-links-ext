@@ -4,6 +4,7 @@ SharingOptions={
     init:function(){
         SharingOptions.sites=JSON.parse(localStorage.sharingStaticData);
         SharingOptions.show();
+        SharingOptions.loadOptions();
     },
     showanother:function(){
         out="<table>"
@@ -80,6 +81,15 @@ SharingOptions={
         }else{
             chrome.contextMenus.remove(parseInt(localStorage.shortrightclick));
             localStorage.shortrightclick=false;
+        }
+    },
+    loadOptions:function(){
+        if(localStorage.shortpopup=="true"){
+            document.getElementById("popup").checked=true;
+        }
+        if(localStorage.shortrightclick!="false"){
+            document.getElementById("rightclick").checked=true;
+
         }
     }
 }

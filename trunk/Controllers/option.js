@@ -1,3 +1,4 @@
+var background=chrome.extension.getBackgroundPage();
 SharingOptions={
     sites:"",
     init:function(){
@@ -12,8 +13,7 @@ SharingOptions={
             out+="<tr><td>"
             if(SharingOptions.sites.websites[i].contextMenuId && SharingOptions.sites.websites[i].contextMenuId!=-1){
                 out+="<button onclick='SharingOptions.removeSite("+site+","+i+")'> remove " +SharingOptions.sites.websites[i].name+"</button>";
-            }else
-            {
+            }else{
                 out+="<button onclick='SharingOptions.addSite("+site+","+i+")'> Add " +SharingOptions.sites.websites[i].name+"</button>";
             }
             out+="</td></tr>";
@@ -23,15 +23,15 @@ SharingOptions={
     },
     addSite:function(site,i){
         pId= parseInt(localStorage.sharingParentID);
-        SharingOptions.sites.websites[i].contextMenuId=chrome.extension.getBackgroundPage().ShareLinksBG.createContextMenu(site.name,pId);
-        chrome.extension.getBackgroundPage().ShareLinksBG.setData(SharingOptions.sites);
+        SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
+        background.ShareLinksBG.setData(SharingOptions.sites);
         SharingOptions.show();
         SharingOptions.open(SharingOptions.sites.websites[i].value);
     },
     removeSite:function(site,i) {
         chrome.contextMenus.remove(SharingOptions.sites.websites[i].contextMenuId);
         SharingOptions.sites.websites[i].contextMenuId=-1;
-        chrome.extension.getBackgroundPage().ShareLinksBG.setData(SharingOptions.sites);
+        background.ShareLinksBG.setData(SharingOptions.sites);
         SharingOptions.show()
     },
     show:function(){
@@ -47,13 +47,11 @@ SharingOptions={
             if(SharingOptions.sites.websites[i].contextMenuId && SharingOptions.sites.websites[i].contextMenuId!=-1){
                 //out+="<button onclick='SharingOptions.removeSite("+site+","+i+")'> remove " +SharingOptions.sites.websites[i].name+"</button>";
                 out+="<input name='' type='submit' class='add-button' value='remove' onclick='SharingOptions.removeSite("+site+","+i+")'/>"
-            }else
-            {
+            }else{
                 //out+="<button onclick='SharingOptions.addSite("+site+","+i+")'> Add " +SharingOptions.sites.websites[i].name+"</button>";
                 out+="<input name='' type='submit' class='add-button' value='add' onclick='SharingOptions.addSite("+site+","+i+")'/>"
             }
             out+="</div>";
-            
         }
         out+="<div class='nl'></div>"
         $("#websites").html(out)
@@ -69,20 +67,17 @@ SharingOptions={
             redirecturl=SharingStaticData.twitterRedirecturl;
             tokenurl=SharingStaticData.twitterAuthTokenurl;
         }
-        chrome.extension.getBackgroundPage().ShareLinksBG.open(redirecturl,tokenurl);
+        background.ShareLinksBG.open(redirecturl,tokenurl);
     },
     save:function(){
-        
         if($("#popup").attr('checked')){
             localStorage.shortpopup=true;
-        }else
-        {
+        }else{
             localStorage.shortpopup=false;
         }
         if($("#rightclick").attr('checked')){
-            localStorage.shortrightclick=chrome.extension.getBackgroundPage().ShareLinksBG.createCopyshortContextMenu();
-        }else
-        {
+            localStorage.shortrightclick=background.ShareLinksBG.createCopyshortContextMenu();
+        }else{
             chrome.contextMenus.remove(parseInt(localStorage.shortrightclick));
             localStorage.shortrightclick=false;
         }

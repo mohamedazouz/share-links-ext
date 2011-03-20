@@ -76,11 +76,13 @@ SharingOptions={
         }else{
             localStorage.shortpopup=false;
         }
-        if($("#rightclick").attr('checked')){
-            localStorage.shortrightclick=background.ShareLinksBG.createCopyshortContextMenu();
-        }else{
-            chrome.contextMenus.remove(parseInt(localStorage.shortrightclick));
-            localStorage.shortrightclick=false;
+        if(localStorage.shortrightclick=="false"){
+            if($("#rightclick").attr('checked')){
+                localStorage.shortrightclick=background.ShareLinksBG.createCopyshortContextMenu();
+            }else{
+                chrome.contextMenus.remove(parseInt(localStorage.shortrightclick));
+                localStorage.shortrightclick=false;
+            }
         }
     },
     loadOptions:function(){

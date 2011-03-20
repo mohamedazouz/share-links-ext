@@ -35,7 +35,7 @@ ShareLinksBG={
             "title":"Copy Shortener url",
             "contexts":["page"],
             "onclick":function(OnClickData,tab){
-                ShareLinksBG.getShortenerUrl(tab.url)
+                ShareLinksBG.getShortenerUrl(tab.url,function(){})
             }
         };
         id=chrome.contextMenus.create(createProperties);
@@ -60,10 +60,15 @@ ShareLinksBG={
                 site.url=tab.url;
                 site.text=OnClickData.selectionText;
                 localStorage.onclickedcontext=JSON.stringify(site);
-                chrome.tabs.create({
+                /* chrome.tabs.create({
                     url:"views/share.html",
                     selected:true
-                })
+                })*/
+                chrome.tabs.executeScript(null,
+                {
+                    //file:"/Controllers/trycon.js"
+                    file:"/views/content_script/jquery.nyroModal.custom.js"
+                });
             //sites.websites[i].contextMenuId
             },
             "parentId":parendId

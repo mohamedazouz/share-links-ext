@@ -28,8 +28,8 @@ SharingShare={
         if(type=="twitter"){
             json.link=SharingStaticData.twitterUpdatestatus;
         }
+       ShareLinksBG.share($("#msg").val(), site.url,json);
         
-        ShareLinksBG.share($("#msg").val(), site.url,json);
     }
 }
 

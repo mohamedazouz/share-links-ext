@@ -210,6 +210,3 @@ ShareLinksBG={
         return null;
     }
 }
-$(function(){
-    ShareLinksBG.init();
-});

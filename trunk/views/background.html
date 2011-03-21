@@ -11,7 +11,15 @@ and open the template in the editor.
         <script type="text/javascript" src="../Controllers/bg.js"></script>
         <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js" ></script>
         <script type="text/javascript" src="../Controllers/data.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(function(){
+                    ShareLinksBG.init();
+                });
+            })
+        </script>
     </head>
+
     <body>
         <input id="shorturl" disabled/><br>
     </body>

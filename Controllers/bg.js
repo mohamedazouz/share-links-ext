@@ -67,7 +67,7 @@ ShareLinksBG={
                     selected:true
                 })*/
                 //alert(JSON.stringify(OnClickData) + "\n" + JSON.stringify(tab))
-            chrome.tabs.executeScript(null,
+                chrome.tabs.executeScript(null,
                 {
                     //file:"/Controllers/trycon.js"
                     file:"/views/content_script/jquery.nyroModal.custom.js"
@@ -95,31 +95,17 @@ ShareLinksBG={
         input.select();
         document.execCommand('Copy');
     },
-    getShortenerUrl:function(url){
-        //why u didn't use jquery ajax.
-        var response;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://goo.gl/api/shorten?url=" +encodeURIComponent(url), false);
+    getShortenerUrl:function(url,handler){
 
-        xmlhttp.onload = function()
-        {
-            var object = JSON.parse(xmlhttp.responseText);
-
-            if(object["short_url"] == undefined)
-                response = {
-                    status: "error",
-                    message: object["error_message"]
-                };
-            else
-                response = {
-                    status: "success",
-                    message: object["short_url"]
-                };
+        $.ajax({
+            url:"http://goo.gl/api/shorten?url=" +encodeURIComponent(url),
+            type: "POST",
+            success: function(shortUrl){
+                ShareLinksBG.copyurl(JSON.parse(shortUrl).short_url);
+                handler(JSON.parse(shortUrl))
+            }
         }
-        xmlhttp.send(null);
-        //in slow connections this command will be reached
-        ShareLinksBG.copyurl(response.message);
-        return response.message;
+        )
     },
     share:function(message,link,jsonData){
         if(jsonData.type=="facebook"){
@@ -133,13 +119,14 @@ ShareLinksBG={
             });
         }
         if(jsonData.type=="twitter"){
+            
             token=JSON.parse(window.localStorage.twitter_access_token);
-            url=jsonData.link;
+            var url=jsonData.link;
             json={
                 oauth_token:token.oauth_token,
                 oauth_token_secret:token.oauth_token_secret,
                 status:message,
-                link:ShareLinksBG.getShortenerUrl(link)
+                link:link
             }
             $.ajax({
                 url:url,
@@ -148,14 +135,14 @@ ShareLinksBG={
                 success:function(data){
                     //never show an alert.
                     //and in testing cases you'd better use console.log() insted of alerts.
-                    alert("Done !");
+                    //alert("Done !");
+                    console.log("done")
                 },
                 error:function(data){
-                    alert(JSON.stringify(data));
+                    console.log("error")
                 }
-            })
+            })   
         }
-
     },
     open:function(redirectLink,tokenlink){
         ShareLinksBG.Authenticate(0,tokenlink);

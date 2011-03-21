@@ -1614,4 +1614,4 @@ jQuery(function($, undefined) {
 	});
 });
 
-$.nmManual(chrome.extension.getURL("views/share.html"), "{'opacity':100}")
+$.nmManual(chrome.extension.getURL("views/share.html"), "{'type':'ifram'}")

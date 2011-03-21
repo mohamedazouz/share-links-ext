@@ -59,12 +59,15 @@ ShareLinksBG={
 
                 site.url=tab.url;
                 site.text=OnClickData.selectionText;
+                site.pagetitle=tab.title;
+                site.favIconUrl=tab.favIconUrl;
                 localStorage.onclickedcontext=JSON.stringify(site);
                 /* chrome.tabs.create({
                     url:"views/share.html",
                     selected:true
                 })*/
-                chrome.tabs.executeScript(null,
+                //alert(JSON.stringify(OnClickData) + "\n" + JSON.stringify(tab))
+            chrome.tabs.executeScript(null,
                 {
                     //file:"/Controllers/trycon.js"
                     file:"/views/content_script/jquery.nyroModal.custom.js"

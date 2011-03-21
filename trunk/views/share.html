@@ -14,15 +14,15 @@ and open the template in the editor.
         <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js" ></script>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script>
-            $(document).ready(function(){  
-                site=JSON.parse(localStorage.onclickedcontext);
-                out="<button onclick='SharingPopup.share('facebook') '>";
-                //out+=site.value;
-                //out+="')'> share "+site.name;
-                out+=site.name;
-                out+="</button>";
-                $("#share").html(out);
-            })
+//            $(document).ready(function(){
+//                site=JSON.parse(localStorage.onclickedcontext);
+//                out="<button onclick='SharingPopup.share('facebook') '>";
+//                //out+=site.value;
+//                //out+="')'> share "+site.name;
+//                out+=site.name;
+//                out+="</button>";
+//                $("#share").html(out);
+//            })
         </script>
     </head>
     <body>
@@ -36,7 +36,9 @@ and open the template in the editor.
             <textarea name="" cols="" rows="" class="txt-area" id="msg"></textarea>
             <input name="" type="submit" class="send-btn f-r" value="أرسل" onclick="SharingShare.share()"/>
         </div>
-
+        <div id="desc">
+            
+        </div>
     </body>
 </html>
 

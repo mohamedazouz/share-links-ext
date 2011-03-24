@@ -2,12 +2,18 @@ var background=chrome.extension.getBackgroundPage();
 SharingPopup={
     init:function(){
         chrome.tabs.getSelected(null,function(tab){
-            //please check here if the url is http or https before sharing.
-            $("#shorturls").html(background.ShareLinksBG.getShortenerUrl(tab.url));
+            background.ShareLinksBG.getShortenerUrl(tab.url,function(shorturl){
+                var msg="";
+                if(shorturl=="error"){
+                    msg=shorturl;
+                    $("#short").hide();
+                }else
+                {
+                    msg=shorturl.short_url;
+                }
+                $("#shorturls").html(msg);
+            })
         })
-        if(!localStorage.shortpopup ||localStorage.shortpopup=="false"){
-            $("#short").hide();
-        }
     },
     open:function(type){
         var redirecturl;

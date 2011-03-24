@@ -103,6 +103,9 @@ ShareLinksBG={
             success: function(shortUrl){
                 ShareLinksBG.copyurl(JSON.parse(shortUrl).short_url);
                 handler(JSON.parse(shortUrl))
+            },
+            error:function(){
+                handler("error")
             }
         }
         )

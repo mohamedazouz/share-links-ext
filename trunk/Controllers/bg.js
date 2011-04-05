@@ -124,9 +124,10 @@ ShareLinksBG={
             });
         }
         if(jsonData.type=="twitter"){
-            
+
+
             token=JSON.parse(window.localStorage.twitter_access_token);
-            var url=jsonData.link;
+            var url="http://local.activedd.com/azouz/twitter_update.php";
             json={
                 oauth_token:token.oauth_token,
                 oauth_token_secret:token.oauth_token_secret,
@@ -219,8 +220,3 @@ function onRequest(request, sender, callback) {
 }
 
 chrome.extension.onRequest.addListener(onRequest);
-
-
-function hello(){
-    alert("hello");
-}

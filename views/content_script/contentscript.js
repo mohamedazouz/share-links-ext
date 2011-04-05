@@ -68,9 +68,6 @@ script={
                     msg:msg.value,
                     url:site.url
                 }
-                if(type=="twitter"){
-                    json.link="http://local.activedd.com/azouz/twitter_update.php";
-                }
                 chrome.extension.sendRequest(json, sucess);
                 function sucess(){
                     script.fade(-1)

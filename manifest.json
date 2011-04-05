@@ -21,9 +21,7 @@
     {
       "all_frames": true,
       "matches": ["http://*/*"],
-      //"css": ["views/fancybox/jquery.fancybox-1.3.4.css"],
-      //"js": ["views/js/jquery.js","views/fancybox/jquery.fancybox-1.3.4.pack.js","views/fancybox/jquery.mousewheel-3.0.4.pack.js"]
-      "css":["views/content_script/nyroModal.css"],
-      "js": ["views/content_script/jquery.js"]
+      //"css":["views/css/style.css"],
+      "js": ["views/content_script/contentscript.js"]
     }]
 }

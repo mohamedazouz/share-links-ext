@@ -48,4 +48,9 @@ SharingPopup={
 }
 $(function(){
     SharingPopup.init();
+
+    $("#sharequickly").html(chrome.i18n.getMessage("sharequickly"));
+    $("#setting").html(chrome.i18n.getMessage("shorternUrl"));
+    $("#short").val(chrome.i18n.getMessage("short"));
+    $("#setting").html(chrome.i18n.getMessage("setting"));
 });

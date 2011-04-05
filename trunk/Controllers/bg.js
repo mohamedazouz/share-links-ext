@@ -70,7 +70,9 @@ ShareLinksBG={
                 chrome.tabs.executeScript(null,
                 {
                     //file:"/Controllers/trycon.js"
-                    file:"/views/content_script/jquery.nyroModal.custom.js"
+                    //file:"/views/content_script/jquery.nyroModal.custom.js"
+                    "code":"chrome.extension.sendRequest({'yada': 'eshta'}, script.show);"
+
                 });
             //sites.websites[i].contextMenuId
             },
@@ -118,7 +120,7 @@ ShareLinksBG={
                 message:message,
                 link:link
             }, function(response) {
-                  alert(JSON.stringify(response));
+                  console.log(JSON.stringify(response));
             });
         }
         if(jsonData.type=="twitter"){
@@ -199,4 +201,26 @@ ShareLinksBG={
         }
         return null;
     }
+}
+
+
+
+function onRequest(request, sender, callback) {
+    if (request.yad == 'eshta') {
+        callback("eshta yaba");
+    }
+    if (request.yada == 'eshta') {
+        callback(localStorage.onclickedcontext);
+    }
+    if (request.share == 'done') {
+        ShareLinksBG.share(request.msg,request.url,request);
+        callback("");
+    }
+}
+
+chrome.extension.onRequest.addListener(onRequest);
+
+
+function hello(){
+    alert("hello");
 }

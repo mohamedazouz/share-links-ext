@@ -11,6 +11,7 @@ and open the template in the editor.
         <script type="text/javascript" src="../Controllers/popup.js"></script>
         <script type="text/javascript" src="../Controllers/data.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        
     </head>
     <body>
         <div class="main-container">
@@ -18,16 +19,16 @@ and open the template in the editor.
                 <div class="f logo">
                     <img src="images/logo.png" width="76" height="37" alt="شارك" />
                 </div>
-                <div class="title f">شارك سريعا</div>
+                <div class="title f" id="sharequickly"></div>
                 <!-- copy link -->
                 <div class="copy-link f" id="">
-                    <small class="f">مختصر الروابط</small>
+                    <small class="f" id="shorternUrl"></small>
                     <small class="site-link f" id="shorturls"></small>
-                    <input name="" type="submit" class="copy-button f-r" value="نسخ" onclick="" id="short"/>
+                    <input name="" type="submit" class="copy-button f-r" onclick="" id="short"/>
                 </div>
                 <div class="f-r setting-cont" onclick="SharingPopup.openOptionPage()">
                     <a href="" class="f-r"><img src="images/settings.png" width="27" height="26" /></a>
-                    <a href="" class="setting-link f" ><small>الأعدادات</small></a>
+                    <a href="" class="setting-link f" ><small id="setting"></small></a>
                 </div>
                 <div class="nl"></div>
             </div>

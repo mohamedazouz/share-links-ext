@@ -1,7 +1,8 @@
 {
-    "name":"Easy Share",
+    "name":"__MSG_extname__",
     "version": "1.0",
-    "description": "It shares text and urls in social networks !",
+    "description": "__MSG_extdesc__",
+    "default_locale":"en",
     "background_page": "views/background.html",
     "icons":{
         "16": "views/images/logo.png",

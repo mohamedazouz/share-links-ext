@@ -14,6 +14,12 @@
                 $('input:checkbox:not([safari])').checkbox();
                 $('input[safari]:checkbox').checkbox({cls:'jquery-safari-checkbox'});
                 $('input:radio').checkbox();
+
+                $("#choose").html(chrome.i18n.getMessage("choose"));
+                $("#linkappear").html(chrome.i18n.getMessage("linkappear"));
+                $("#mainappear").html(chrome.i18n.getMessage("mainappear"));
+                $("#mouseappear").html(chrome.i18n.getMessage("mouseappear"));
+                $("#save").val(chrome.i18n.getMessage("save"));
                 
             });
         </script>
@@ -26,98 +32,98 @@
                 <img src="images/options-logo.png" width="145" height="70" alt="شارك" />
             </div>
 
-            <div class="main-title f">أختر الخدمات المفضلة لديك</div>
+            <div class="main-title f" id="choose"></div>
 
             <div class="services-container" id="websites">
 
-              <!--<div class="service f">
+                <!--<div class="service f">
 
-                    <div class="service-logo">
-                        <img src="images/option-twitter.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts twitter">twitter</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                      <div class="service-logo">
+                          <img src="images/option-twitter.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts twitter">twitter</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-facebook.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts facebook">Facebook</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-facebook.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts facebook">Facebook</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-gmail.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts gmail">Gmail</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-gmail.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts gmail">Gmail</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-linked.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts linked-in">Linked In</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-linked.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts linked-in">Linked In</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-google.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts google">Google Bookmarks</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-google.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts google">Google Bookmarks</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-yahoo.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts yahoo">Yahoo Mail</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-yahoo.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts yahoo">Yahoo Mail</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-google-app.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts google-app">Google app</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-google-app.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts google-app">Google app</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="service f">
-                    <div class="service-logo">
-                        <img src="images/option-msn.png" width="43" height="58" />
-                    </div>
-                    <div class="services-texts msn">Google app</div>
-                    <input name="" type="submit" class="add-button" value="أضــــف"/>
-                </div>
+                  <div class="service f">
+                      <div class="service-logo">
+                          <img src="images/option-msn.png" width="43" height="58" />
+                      </div>
+                      <div class="services-texts msn">Google app</div>
+                      <input name="" type="submit" class="add-button" value="أضــــف"/>
+                  </div>
 
-                <div class="nl"></div>-->
+                  <div class="nl"></div>-->
             </div>
 
 
-            <div class="main-title f">أختر طريقة ظهور مختصر الروابط</div>
+            <div class="main-title f" id="linkappear"></div>
 
 
             <form id="myform" action="javascript:void(0)">
 
                 <div class="f checkbox-container">
                     <p>
-                        <label class="f">فى القائمة الرئيسية</label>
+                        <label class="f" id="mainappear"></label>
                         <input type="checkbox" name="checkbox[]" class="top5" id="popup"/>
                     </p>
                     <p>
-                        <label class="f">عند نقر الزر الماوس الايمن</label>
+                        <label class="f" id="mouseappear"></label>
                         <input type="checkbox" name="checkbox[]" class="top5" id="rightclick" />
                     </p>
 
                 </div>
 
                 <div class="f-r save-button">
-                    <input name="" type="submit" class="add-button" value="حفظ" onclick="SharingOptions.save()"/>
+                    <input name="" type="submit" class="add-button"  id="save"onclick="SharingOptions.save()"/>
                 </div>
 
             </form>

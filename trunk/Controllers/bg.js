@@ -54,7 +54,6 @@ ShareLinksBG={
             "onclick":function(OnClickData,tab){
                 ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
-                //alert(OnClickData.menuItemId);
                 site=ShareLinksBG.getContextMenueInfo(OnClickData.menuItemId)
 
                 site.url=tab.url;
@@ -62,19 +61,10 @@ ShareLinksBG={
                 site.pagetitle=tab.title;
                 site.favIconUrl=tab.favIconUrl;
                 localStorage.onclickedcontext=JSON.stringify(site);
-                /* chrome.tabs.create({
-                    url:"views/share.html",
-                    selected:true
-                })*/
-                //alert(JSON.stringify(OnClickData) + "\n" + JSON.stringify(tab))
                 chrome.tabs.executeScript(null,
                 {
-                    //file:"/Controllers/trycon.js"
-                    //file:"/views/content_script/jquery.nyroModal.custom.js"
                     "code":"chrome.extension.sendRequest({'yada': 'eshta'}, script.show);"
-
                 });
-            //sites.websites[i].contextMenuId
             },
             "parentId":parendId
         };
@@ -124,10 +114,8 @@ ShareLinksBG={
             });
         }
         if(jsonData.type=="twitter"){
-
-
             token=JSON.parse(window.localStorage.twitter_access_token);
-            var url="http://local.activedd.com/azouz/twitter_update.php";
+            var url=SharingStaticData.twitterUpdatestatus;
             json={
                 oauth_token:token.oauth_token,
                 oauth_token_secret:token.oauth_token_secret,
@@ -139,9 +127,6 @@ ShareLinksBG={
                 dataType: "html",
                 data:json,
                 success:function(data){
-                    //never show an alert.
-                    //and in testing cases you'd better use console.log() insted of alerts.
-                    //alert("Done !");
                     console.log("done")
                 },
                 error:function(data){

@@ -1,13 +1,4 @@
-
-//onResponse=function(ob){
-//
-//}
-//ob={
-//    "yad" : "eshta"
-//}
-//chrome.extension.sendRequest(ob, onResponse);
 var site="";
-
 var endalpha = 95;
 var alpha = 0;
 var container;
@@ -46,18 +37,15 @@ script={
             out="</br><a href='' class='f-r'><img src='"+ chrome.extension.getURL("views/images/"+site.value+".png")+"' width='31' height='32' alt='"+site.value+"' /></a>";
             out+="<a href='' class='"+site.value+" f'>"+site.name+"</a>";
             if(site.text){
-                //$("#msg").val(site.text);
                 msg.value=site.text;
             }
-
-            //        $("#shareitem").html(out);
             link.innerHTML=out;
 
             out="<table>"
             out="<tr><td><b>Image : </b></td><td><img src='"+site.favIconUrl+"' /></td></tr>"
             out+="<tr><td><b>Title :</b></td><td>"+site.pagetitle+"</td></tr>";
             out+="<tr><td><b>Url  : </b></td><td>"+site.url+"</td></tr>";
-            //$("#desc").html(out);
+            
             desc.innerHTML=out;
 
             button.onclick=function(){

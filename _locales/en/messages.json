@@ -12,7 +12,7 @@
         "message":"It shares text and urls in social networks !",
         "description":"Extension description"
     },
-    //------------------------POPUP ----------------------------
+    //------------------------POPUP PAGE ----------------------------
     "sharequickly":{
         "message":"شارك سريعا",
         "description":"share quickly label"
@@ -29,7 +29,7 @@
         "message":"الأعدادات",
         "description":"setting link"
     },
-    //------------------------OPTION----------------------------
+    //------------------------OPTION PAGE ----------------------------
     "choose":{
         "message":"أختر الخدمات المفضلة لديك",  
         "description":"Extension description"

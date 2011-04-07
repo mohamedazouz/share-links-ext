@@ -102,7 +102,7 @@ ShareLinksBG={
         }
         )
     },
-    share:function(message,link,jsonData){
+    share:function(message,link,jsonData,back){
         if(jsonData.type=="facebook"){
             token=JSON.parse(window.localStorage.access_token);
             FB.api('/me/feed','post',{
@@ -111,6 +111,7 @@ ShareLinksBG={
                 link:link
             }, function(response) {
                   console.log(JSON.stringify(response));
+                back(JSON.stringify(response))
             });
         }
         if(jsonData.type=="twitter"){
@@ -128,12 +129,19 @@ ShareLinksBG={
                 data:json,
                 success:function(data){
                     console.log("done")
+                    back("done")
                 },
                 error:function(data){
                     console.log("error")
+                    back("error")
                 }
             })   
         }
+        if(jsonData.type=="gmail"){
+            back("done redirect!");
+            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to=m_aliazouz@yahoo.com&su="+encodeURIComponent("wala emta ")+"&body="+encodeURIComponent(message),'mypage',"width=500,height=400");
+        }
+
     },
     open:function(redirectLink,tokenlink){
         ShareLinksBG.Authenticate(0,tokenlink);
@@ -199,8 +207,10 @@ function onRequest(request, sender, callback) {
         callback(localStorage.onclickedcontext);
     }
     if (request.share == 'done') {
-        ShareLinksBG.share(request.msg,request.url,request);
-        callback("");
+        ShareLinksBG.share(request.msg,request.url,request,function(back){
+            callback(back);
+        });
+        
     }
 }
 

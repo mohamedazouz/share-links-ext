@@ -114,7 +114,7 @@ img {
 	padding:6px;
 	margin:0 22px;
 }
-.copy-button, .send-btn {
+.copy-button, .send-btn, .message-btn {
 	width:41px;
 	height:0px;
 	padding-bottom:20px;
@@ -125,9 +125,9 @@ img {
 	font-family:Tahoma, Geneva, sans-serif;
 	cursor:pointer;
 }
-.copy-button:hover{
+.copy-button:hover {
 	background: -webkit-gradient(linear, left top, left bottom, from(#213600), to(#75c100));
-	}
+}
 .site-link {
 	width:150px;
 	background:#ffb849;
@@ -151,25 +151,58 @@ img {
 /*------ share link popup style ---------*/
 .share-container {
 	width:480px;
-	height:180px;
-	background:url(../images/link_popup.png) no-repeat;
+	background:url(../images/link_popup1.png) no-repeat;
 	padding:10px;
+	color:#213600;
 }
-.txt-area {
+.txt-area, .message-area {
 	width:440px;
 	height:90px;
 	overflow:auto;
 	outline:0;
 	margin:0 15px;
+	border:1px solid #213600;
 }
-.send-btn {
+.message-area{
+	height:180px;
+	margin-top: 3px;
+	}
+.share-title {
+	font-size:16px;
+	text-align:left;
+}
+.share-txt {
+	width:290px;
+	font-size:11px;
+	direction:ltr;
+	position:relative;
+}
+.share-image {
+	margin:0 16px;
+	position:relative;
+}
+.share-close {
+	position:absolute;
+	top:-20px;
+	right:0;
+	font-size:14px;
+	color:#ffa200;
+}
+.share-container select {
+	width:120px;
+	margin: 6px 16px;
+}
+.send-btn, .message-btn {
 	width:117px;
 	-webkit-border-radius:3px;
-	margin: 7px 18px 0 18px;
+	margin-top: 7px
 }
-.send-btn:hover{
-	background: -webkit-gradient(linear, left top, left bottom, from(#213600), to(#75c100));
+.message-btn{
+	margin:7px 16px 0 24px; 
 	}
+.send-btn:hover {
+	background: -webkit-gradient(linear, left top, left bottom, from(#213600), to(#75c100));
+}
 .link-cont {
 	padding: 10px 20px 0 20px;
 }
@@ -177,4 +210,9 @@ img {
 	color:#67c9e9;
 	margin: 5px 10px;
 }
+.messageField {
+	width: 439px;
+	border: 1px solid #213600;
+	margin: 2px 16px;
+} 
 /*------ EO share link popup ---------*/

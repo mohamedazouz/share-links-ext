@@ -63,15 +63,19 @@ SharingOptions={
         if(type=="facebook"){
             redirecturl=SharingStaticData.facebookRedirecturl;
             tokenurl=SharingStaticData.facebookAuthTokenurl;
+            background.ShareLinksBG.open(redirecturl,tokenurl);
         }
         if(type=="twitter"){
             redirecturl=SharingStaticData.twitterRedirecturl;
             tokenurl=SharingStaticData.twitterAuthTokenurl;
+            background.ShareLinksBG.open(redirecturl,tokenurl);
         }
-        background.ShareLinksBG.open(redirecturl,tokenurl);
+
+       
     },
     save:function(){
         if($("#popup").attr('checked')){
+            alert("hi")
             localStorage.shortpopup=true;
         }else{
             localStorage.shortpopup=false;

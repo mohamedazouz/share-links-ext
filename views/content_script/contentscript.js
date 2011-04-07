@@ -57,7 +57,8 @@ script={
                     url:site.url
                 }
                 chrome.extension.sendRequest(json, sucess);
-                function sucess(){
+                function sucess(back){
+                    alert(back)
                     script.fade(-1)
                 }
             }

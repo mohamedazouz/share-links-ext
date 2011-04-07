@@ -17,10 +17,10 @@ SharingStaticData={
         },{
             'name':'Twitter',
             'value':"twitter"
-        }/*,{
+        },{
             'name':'Gmail',
             'value':"gmail"
-        },{
+        }/*,{
             'name':'GoogleBookmarks',
             'value':"google"   
         },{

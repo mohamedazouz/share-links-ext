@@ -1,19 +1,25 @@
 var background=chrome.extension.getBackgroundPage();
 SharingPopup={
     init:function(){
-        chrome.tabs.getSelected(null,function(tab){
-            background.ShareLinksBG.getShortenerUrl(tab.url,function(shorturl){
-                var msg="";
-                if(shorturl=="error"){
-                    msg=shorturl;
-                    $("#short").hide();
-                }else
-                {
-                    msg=shorturl.short_url;
-                }
-                $("#shorturls").html(msg);
+        if(localStorage.shortpopup=="true"){
+            chrome.tabs.getSelected(null,function(tab){
+                background.ShareLinksBG.getShortenerUrl(tab.url,function(shorturl){
+                    var msg="";
+                    if(shorturl=="error"){
+                        msg=shorturl;
+                        $("#short").hide();
+                    }else
+                    {
+                        msg=shorturl.short_url;
+                    }
+                    $("#shorturls").html(msg);
+                })
             })
-        })
+        }else
+        {
+            $("#copydiv").hide();
+        }
+        
     },
     open:function(type){
         var redirecturl;

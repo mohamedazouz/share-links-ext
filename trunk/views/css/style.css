@@ -35,7 +35,7 @@ img {
 	-webkit-border-radius:10px;
 	border:1px solid #263e00;
 }
-.logo {
+.share-logo {
 	padding:10px;
 }
 .title {
@@ -149,7 +149,7 @@ img {
 	color:#555555;
 }
 /*------ share link popup style ---------*/
-.container {
+.share-container {
 	width:480px;
 	height:180px;
 	background:url(../images/link_popup.png) no-repeat;

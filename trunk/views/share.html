@@ -12,7 +12,20 @@ and open the template in the editor.
         <script type="text/javascript" src="../Controllers/data.js"></script>
         <script type="text/javascript" src="../Controllers/bg.js"></script>
         <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js" ></script>
+        <script>
+        	$(document).ready(function() {
+ 
+			  // toggles the slickbox on clicking the noted link  
+			  $('.share-close').click(function() {
+			  $('.share-txt').toggle(400);
+			  $('.share-image').toggle(400);
+				return false;
+			  });
+		});
+
+        </script>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        
     </head>
     <body>
 
@@ -23,8 +36,41 @@ and open the template in the editor.
                 <a href="" class="twitter f">twitter</a>-->
             </div>
             <textarea name="" cols="" rows="" class="txt-area" id="msg"></textarea>
-            <input name="" type="submit" class="send-btn f-r" value="أرسل" onClick="SharingShare.share()"/>
-        </div>
+            
+          <p class="share-title">title عنوان</p>
+<div class="share-txt f-r">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book. It has survived not only
+                five centuries, but also the leap into electronic typesetting, remaining
+                essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages,
+                and more recently with desktop publishing software like Aldus
+                PageMaker including versions of Lorem Ipsum.
+                
+                <a  href="" class="share-close">x</a>
+            </div>
+            <div class="share-image">
+            
+            	<img src="images/actor.png" width="110" height="78" alt="actor">
+                <a href="" class="share-close">x</a>
+            
+            </div>
+            
+            <div style="float:right; width:100%;">
+            
+            <select name="">
+              <option>test_1</option>
+              <option>test_2</option>
+            </select>
+            
+          	<input name="" type="submit" class="send-btn f-r" value="أرسل" onClick="SharingShare.share()"/>
+            
+            </div>
+              
+          
+    </div>
         <div id="desc">
             
         </div>

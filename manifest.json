@@ -22,7 +22,7 @@
     {
       "all_frames": true,
       "matches": ["http://*/*"],
-      //"css":["views/css/style.css"],
+      "css":["views/css/style.css"],
       "js": ["views/content_script/contentscript.js"]
     }]
 }

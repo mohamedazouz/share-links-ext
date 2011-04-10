@@ -63,7 +63,7 @@ ShareLinksBG={
                 localStorage.onclickedcontext=JSON.stringify(site);
                 chrome.tabs.executeScript(null,
                 {
-                    "code":"chrome.extension.sendRequest({'yada': 'eshta'}, script.show);"
+                    "code":"chrome.extension.sendRequest({'click': 'ok'}, script.show);"
                 });
             },
             "parentId":parendId
@@ -108,7 +108,9 @@ ShareLinksBG={
             FB.api('/me/feed','post',{
                 access_token:token.access_token,
                 message:message,
-                link:link
+                link:link,
+                description:jsonData.des,
+                picture:jsonData.img
             }, function(response) {
                   console.log(JSON.stringify(response));
                 back(JSON.stringify(response))
@@ -139,7 +141,7 @@ ShareLinksBG={
         }
         if(jsonData.type=="gmail"){
             back("done redirect!");
-            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to=m_aliazouz@yahoo.com&su="+encodeURIComponent("wala emta ")+"&body="+encodeURIComponent(message),'mypage',"width=500,height=400");
+            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to="+encodeURIComponent(jsonData.to)+"&su="+encodeURIComponent(jsonData.sub)+"&body="+encodeURIComponent(jsonData.msg+jsonData.url),'mypage',"width=500,height=400");
         }
 
     },
@@ -200,10 +202,7 @@ ShareLinksBG={
 
 
 function onRequest(request, sender, callback) {
-    if (request.yad == 'eshta') {
-        callback("eshta yaba");
-    }
-    if (request.yada == 'eshta') {
+    if (request.click == 'ok') {
         callback(localStorage.onclickedcontext);
     }
     if (request.share == 'done') {

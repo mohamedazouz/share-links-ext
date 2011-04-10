@@ -2,7 +2,7 @@
 body {
 	margin:0;
 	padding:0;
-	direction:rtl;
+	/*direction:rtl;*/
 	font-family:Tahoma, Geneva, sans-serif;
 	font-size:14px;
 }
@@ -151,9 +151,11 @@ img {
 /*------ share link popup style ---------*/
 .share-container {
 	width:480px;
-	background:url(../images/link_popup1.png) no-repeat;
+	/*background:url(../images/link_popup1.png) no-repeat;*/
 	padding:10px;
 	color:#213600;
+        border: 1px solid #213600;
+        position: relative;
 }
 .txt-area, .message-area {
 	width:440px;

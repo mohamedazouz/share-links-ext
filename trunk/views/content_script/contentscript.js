@@ -81,7 +81,7 @@ script={
                 button.onclick=function(){
                     type=site.value;
                     json={
-                       'share': 'done',
+                        'share': 'done',
                         type:type,
                         msg:msg.value,
                         url:site.url,
@@ -126,6 +126,8 @@ script={
                 shareImage.setAttribute("class", "share-image");
                 var shareImage_img  = document.createElement('img');
                 shareImage_img.setAttribute("src", site.favIconUrl);
+                shareImage_img.setAttribute("width",110);
+                shareImage_img.setAttribute("height",78);
                 shareImage.appendChild(shareImage_img);
                 var shareImage_close  = document.createElement('a');
                 shareImage_close.setAttribute("class", "share-close");
@@ -149,7 +151,7 @@ script={
                         type:type,
                         msg:msg.value,
                         url:site.url,
-                        img:site.favIconUrl,
+                        img:shareImage_img.src,
                         des:site.url
 
                     }

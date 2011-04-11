@@ -23,24 +23,13 @@ SharingOptions={
         $("#website").html(out)
     },
     addSite:function(site,i){
-
-        if(SharingOptions.sites.websites[i].value!="gmail"){
-            SharingOptions.open(SharingOptions.sites.websites[i].value,function(data){
-                alert(data)
-                pId= parseInt(localStorage.sharingParentID);
-                SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
-                background.ShareLinksBG.setData(SharingOptions.sites);
-                SharingOptions.show();
-            });
-        }else
-        {
-         //   alert(data)
+        SharingOptions.open(SharingOptions.sites.websites[i].value,function(data){
+            alert(data)
             pId= parseInt(localStorage.sharingParentID);
             SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
             background.ShareLinksBG.setData(SharingOptions.sites);
             SharingOptions.show();
-        }
-
+        });
     },
     removeSite:function(site,i) {
         chrome.contextMenus.remove(SharingOptions.sites.websites[i].contextMenuId);
@@ -86,6 +75,9 @@ SharingOptions={
             background.ShareLinksBG.open(redirecturl,tokenurl,function(data){
                 handler(data);
             });
+        }
+        if(type=="gmail"){
+            handler("done");
         }
 
        

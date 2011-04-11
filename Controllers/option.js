@@ -23,11 +23,24 @@ SharingOptions={
         $("#website").html(out)
     },
     addSite:function(site,i){
-        pId= parseInt(localStorage.sharingParentID);
-        SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
-        background.ShareLinksBG.setData(SharingOptions.sites);
-        SharingOptions.show();
-        SharingOptions.open(SharingOptions.sites.websites[i].value);
+
+        if(SharingOptions.sites.websites[i].value!="gmail"){
+            SharingOptions.open(SharingOptions.sites.websites[i].value,function(data){
+                alert(data)
+                pId= parseInt(localStorage.sharingParentID);
+                SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
+                background.ShareLinksBG.setData(SharingOptions.sites);
+                SharingOptions.show();
+            });
+        }else
+        {
+         //   alert(data)
+            pId= parseInt(localStorage.sharingParentID);
+            SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
+            background.ShareLinksBG.setData(SharingOptions.sites);
+            SharingOptions.show();
+        }
+
     },
     removeSite:function(site,i) {
         chrome.contextMenus.remove(SharingOptions.sites.websites[i].contextMenuId);
@@ -57,18 +70,22 @@ SharingOptions={
         out+="<div class='nl'></div>"
         $("#websites").html(out)
     },
-    open:function(type){
+    open:function(type,handler){
         var redirecturl;
         var tokenurl;
         if(type=="facebook"){
             redirecturl=SharingStaticData.facebookRedirecturl;
             tokenurl=SharingStaticData.facebookAuthTokenurl;
-            background.ShareLinksBG.open(redirecturl,tokenurl);
+            background.ShareLinksBG.open(redirecturl,tokenurl,function(data){
+                handler(data);
+            });
         }
         if(type=="twitter"){
             redirecturl=SharingStaticData.twitterRedirecturl;
             tokenurl=SharingStaticData.twitterAuthTokenurl;
-            background.ShareLinksBG.open(redirecturl,tokenurl);
+            background.ShareLinksBG.open(redirecturl,tokenurl,function(data){
+                handler(data);
+            });
         }
 
        

@@ -4,15 +4,13 @@ SharingPopup={
         if(localStorage.shortpopup=="true"){
             chrome.tabs.getSelected(null,function(tab){
                 background.ShareLinksBG.getShortenerUrl(tab.url,function(shorturl){
-                    var msg="";
                     if(shorturl=="error"){
-                        msg=shorturl;
-                        $("#short").hide();
+                        $("#copydiv").hide();
                     }else
                     {
-                        msg=shorturl.short_url;
+                        $("#shorturls").html(shorturl.short_url);
                     }
-                    $("#shorturls").html(msg);
+                    
                 })
             })
         }else

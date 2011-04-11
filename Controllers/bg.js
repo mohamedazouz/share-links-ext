@@ -52,6 +52,8 @@ ShareLinksBG={
             "title":name,
             "contexts":["all"],
             "onclick":function(OnClickData,tab){
+                //  chrome.tabs.captureVisibleTab(null, {format:"jpeg"}, function(dataURL) {
+
                 ShareLinksBG.pageurl=tab.url
                 console.log("URL:"+ShareLinksBG.pageurl)
                 site=ShareLinksBG.getContextMenueInfo(OnClickData.menuItemId)
@@ -59,12 +61,15 @@ ShareLinksBG={
                 site.url=tab.url;
                 site.text=OnClickData.selectionText;
                 site.pagetitle=tab.title;
+                //dataURL
                 site.favIconUrl=tab.favIconUrl;
                 localStorage.onclickedcontext=JSON.stringify(site);
                 chrome.tabs.executeScript(null,
                 {
                     "code":"chrome.extension.sendRequest({'click': 'ok'}, script.show);"
                 });
+                 
+            // });
             },
             "parentId":parendId
         };
@@ -145,14 +150,16 @@ ShareLinksBG={
         }
 
     },
-    open:function(redirectLink,tokenlink){
-        ShareLinksBG.Authenticate(0,tokenlink);
+    open:function(redirectLink,tokenlink,handler){
+        ShareLinksBG.Authenticate(0,tokenlink,function(data){
+            handler(data);
+        });
         chrome.tabs.create({
             url:redirectLink,
             selected:true
         });
     },
-    Authenticate:function(count,link){
+    Authenticate:function(count,link,handler){
         if(! count){
             count=0;
         }
@@ -161,10 +168,10 @@ ShareLinksBG={
             window.localStorage.logged=false;
             return;
         }
-        url=link
+//        url=link
         try{
             $.ajax({
-                url:url,
+                url:link,
                 dataType:'json',
                 success:function(res){
                     if(res.oauth_token){ //twitter auth
@@ -172,18 +179,19 @@ ShareLinksBG={
                     }else{//facebook auth
                         window.localStorage.access_token=JSON.stringify(res);
                     }
+                    handler("done");
                 },
                 error:function(){
                     if(count < 60){
                         window.setTimeout(function(){
-                            ShareLinksBG.Authenticate(count+1,link);
+                            ShareLinksBG.Authenticate(count+1,link,handler);
                         }, 1000 * 2);
                     }
                 }
             });
         }catch (e){
             window.setTimeout(function(){
-                ShareLinksBG.Authenticate(count+1,link);
+                ShareLinksBG.Authenticate(count+1,link,handler);
             }, 1000 * 2);
         }
 

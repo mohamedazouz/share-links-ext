@@ -29,6 +29,7 @@ SharingOptions={
             SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
             background.ShareLinksBG.setData(SharingOptions.sites);
             SharingOptions.show();
+            background.ShareLinksBG.getFacebookUserPages(window.localStorage.access_token);
         });
     },
     removeSite:function(site,i) {

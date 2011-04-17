@@ -120,6 +120,16 @@ ShareLinksBG={
                   console.log(JSON.stringify(response));
                 back(JSON.stringify(response))
             });
+        /*FB.api('/116923831721123/feed','post',{
+                access_token:token.access_token,
+                message:message,
+                link:link,
+                description:jsonData.des,
+                picture:jsonData.img
+            }, function(response) {
+                  console.log(JSON.stringify(response));
+                back(JSON.stringify(response))
+            });*/
         }
         if(jsonData.type=="twitter"){
             token=JSON.parse(window.localStorage.twitter_access_token);
@@ -168,7 +178,7 @@ ShareLinksBG={
             window.localStorage.logged=false;
             return;
         }
-//        url=link
+        //        url=link
         try{
             $.ajax({
                 url:link,
@@ -204,6 +214,16 @@ ShareLinksBG={
             }
         }
         return null;
+    },
+    getFacebookUserPages:function(access_token){
+        alert(access_token)
+        token=JSON.parse(access_token);
+        FB.api('/me/accounts',{
+            access_token:token.access_token
+        }, function(response) {
+            window.localStorage.userPages=JSON.stringify(response.data);
+            alert(window.localStorage.userPages)
+        })
     }
 }
 

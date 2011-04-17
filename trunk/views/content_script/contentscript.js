@@ -59,7 +59,7 @@ script={
             var JsonData;
             if(site.value=="gmail"){
                 // message to
-                var messageFieldTO  = document.createElement('input');
+                /* var messageFieldTO  = document.createElement('input');
                 messageFieldTO.setAttribute("class", "messageField");
                 messageFieldTO.setAttribute("type", "text");
 
@@ -93,7 +93,14 @@ script={
                         alert(back)
                         script.fade(-1)
                     }
-                }
+                }*/
+                var messageFieldTO  = document.createElement('iframe');
+                messageFieldTO.setAttribute("src", "https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(site.url));
+                messageFieldTO.setAttribute("width",300);
+                messageFieldTO.setAttribute("height",200);
+                container.appendChild(messageFieldTO)
+                //document.body.appendChild(messageFieldTO)
+                //window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to="+encodeURIComponent(jsonData.to)+"&su="+encodeURIComponent(jsonData.sub)+"&body="+encodeURIComponent(jsonData.msg+jsonData.url),'mypage',"width=500,height=400");
                 
 
             }else{
@@ -152,7 +159,7 @@ script={
                         msg:msg.value,
                         url:site.url,
                         img:shareImage_img.src,
-                        des:site.url
+                        des:site.pagetitle
 
                     }
                     chrome.extension.sendRequest(json, sucess);
@@ -193,7 +200,7 @@ script={
 
 
 
-            /*var desc  = document.createElement('div');
+/*var desc  = document.createElement('div');
             desc.setAttribute("id", "desc");
 
             site=JSON.parse(onclickedcontext);

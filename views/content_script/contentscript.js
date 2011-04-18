@@ -113,7 +113,7 @@ script={
                         type:type,
                         msg:msg.value,
                         url:site.url,
-                        img:shareImage_img.src,
+                        img:document.getElementsByTagName("img")[0].src,
                         des:site.pagetitle
 
                     }

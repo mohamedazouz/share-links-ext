@@ -6,104 +6,59 @@ script={
     show:function(onclickedcontext){
         if(!container){
             site=JSON.parse(onclickedcontext);
-            //extension container ui
-            container  = document.createElement('div');
-            container.setAttribute("class", "share-container f");
-            container.setAttribute("id", "container");
-            container.setAttribute("style", "background:url("+chrome.extension.getURL("views/images/link_popup1.png")+") no-repeat;top: 57px;right: 10px;position: absolute;z-index: 200;");
-
-            //exte logo div
-            var logo  = document.createElement('div');
-            logo.setAttribute("class", "share-logo f");
-
-            //ext logo image
-            var img  = document.createElement('img');
-            img.setAttribute("src", chrome.extension.getURL("views/images/logo.png"));
-            img.setAttribute("width",76);
-            img.setAttribute("height",37);
-            logo.appendChild(img);
-
-            //shared item
-            var link  = document.createElement('div');
-            link.setAttribute("class", "link-cont f-r");
-            link.setAttribute("id", "shareitem");
-
-            //close container
-            var close  = document.createElement('a');
-            close.setAttribute("class", "share-close");
-            close.innerHTML="X";
-            close.onclick=function(){
-                script.fade(-1)
-            }
-            //share button
-            var button  = document.createElement('input');
-            button.setAttribute("type", "submit");
-            button.setAttribute("class", "send-btn f-r");
-            button.setAttribute("value", "share");
-
-
-            container.appendChild(close);
-            container.appendChild(logo);
-            container.appendChild(link);
-            
-
-            
-
-
-            out="</br><a href='' class='f-r'><img src='"+ chrome.extension.getURL("views/images/"+site.value+".png")+"' width='31' height='32' alt='"+site.value+"' /></a>";
-            out+="<a href='' class='"+site.value+" f'>"+site.name+"</a>";
-            if(site.text){
-                msg.value=site.text;
-            }
-            link.innerHTML=out;
-            var JsonData;
             if(site.value=="gmail"){
-                // message to
-                /* var messageFieldTO  = document.createElement('input');
-                messageFieldTO.setAttribute("class", "messageField");
-                messageFieldTO.setAttribute("type", "text");
-
-
-                //message subject
-                var messageFieldSubject  = document.createElement('input');
-                messageFieldSubject.setAttribute("class", "messageField");
-                messageFieldSubject.setAttribute("type", "text");
-
-                //commment msg
-                var msg  = document.createElement('textarea');
-                msg.setAttribute("class", "message-area");
-                
-                
-                container.appendChild(messageFieldTO)
-                container.appendChild(messageFieldSubject);
-                container.appendChild(msg);
-
-                button.onclick=function(){
-                    type=site.value;
-                    json={
-                        'share': 'done',
-                        type:type,
-                        msg:msg.value,
-                        url:site.url,
-                        to:messageFieldTO.value,
-                        sub:messageFieldSubject.value
-                    }
-                    chrome.extension.sendRequest(json, sucess);
-                    function sucess(back){
-                        alert(back)
-                        script.fade(-1)
-                    }
-                }*/
-                var messageFieldTO  = document.createElement('iframe');
-                messageFieldTO.setAttribute("src", "https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(site.url));
-                messageFieldTO.setAttribute("width",300);
-                messageFieldTO.setAttribute("height",200);
-                container.appendChild(messageFieldTO)
-                //document.body.appendChild(messageFieldTO)
-                //window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to="+encodeURIComponent(jsonData.to)+"&su="+encodeURIComponent(jsonData.sub)+"&body="+encodeURIComponent(jsonData.msg+jsonData.url),'mypage',"width=500,height=400");
-                
-
+                window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(site.url),'mypage',"width=500,height=400");
             }else{
+                //extension container ui
+                container  = document.createElement('div');
+                container.setAttribute("class", "share-container f");
+                container.setAttribute("id", "container");
+                container.setAttribute("style", "background:url("+chrome.extension.getURL("views/images/link_popup1.png")+") no-repeat;top: 57px;right: 10px;position: absolute;z-index: 200;");
+
+                //exte logo div
+                var logo  = document.createElement('div');
+                logo.setAttribute("class", "share-logo f");
+
+                //ext logo image
+                var img  = document.createElement('img');
+                img.setAttribute("src", chrome.extension.getURL("views/images/logo.png"));
+                img.setAttribute("width",76);
+                img.setAttribute("height",37);
+                logo.appendChild(img);
+
+                //shared item
+                var link  = document.createElement('div');
+                link.setAttribute("class", "link-cont f-r");
+                link.setAttribute("id", "shareitem");
+
+                //close container
+                var close  = document.createElement('a');
+                close.setAttribute("class", "share-close");
+                close.innerHTML="X";
+                close.onclick=function(){
+                    script.fade(-1)
+                }
+                //share button
+                var button  = document.createElement('input');
+                button.setAttribute("type", "submit");
+                button.setAttribute("class", "send-btn f-r");
+                button.setAttribute("value", "share");
+
+
+                container.appendChild(close);
+                container.appendChild(logo);
+                container.appendChild(link);
+
+
+
+
+
+                out="</br><a href='' class='f-r'><img src='"+ chrome.extension.getURL("views/images/"+site.value+".png")+"' width='31' height='32' alt='"+site.value+"' /></a>";
+                out+="<a href='' class='"+site.value+" f'>"+site.name+"</a>";
+                if(site.text){
+                    msg.value=site.text;
+                }
+                link.innerHTML=out;
                 //commment msg
                 var msg  = document.createElement('textarea');
                 msg.setAttribute("class", "txt-area");
@@ -168,10 +123,11 @@ script={
                         script.fade(-1)
                     }
                 }
+                container.appendChild(button);
+
+                document.body.appendChild(container);
             }
-            container.appendChild(button);
             
-            document.body.appendChild(container);
         }
     },
     fade:function(d){
@@ -197,38 +153,3 @@ script={
     }
 
 }
-
-
-
-/*var desc  = document.createElement('div');
-            desc.setAttribute("id", "desc");
-
-            site=JSON.parse(onclickedcontext);
-            out="</br><a href='' class='f-r'><img src='"+ chrome.extension.getURL("views/images/"+site.value+".png")+"' width='31' height='32' alt='"+site.value+"' /></a>";
-            out+="<a href='' class='"+site.value+" f'>"+site.name+"</a>";
-            if(site.text){
-                msg.value=site.text;
-            }
-            link.innerHTML=out;
-
-            out="<table>"
-            out="<tr><td><b>Image : </b></td><td><img src='"+site.favIconUrl+"' /></td></tr>"
-            out+="<tr><td><b>Title :</b></td><td>"+site.pagetitle+"</td></tr>";
-            out+="<tr><td><b>Url  : </b></td><td>"+site.url+"</td></tr>";
-
-            desc.innerHTML=out;
-
-            button.onclick=function(){
-                type=site.value;
-                json={
-                    'share': 'done',
-                    type:type,
-                    msg:msg.value,
-                    url:site.url
-                }
-                chrome.extension.sendRequest(json, sucess);
-                function sucess(back){
-                    alert(back)
-                    script.fade(-1)
-                }
-            }*/

@@ -216,7 +216,6 @@ ShareLinksBG={
         return null;
     },
     getFacebookUserPages:function(access_token){
-        alert(access_token)
         token=JSON.parse(access_token);
         FB.api('/me/accounts',{
             access_token:token.access_token

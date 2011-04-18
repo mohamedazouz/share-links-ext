@@ -49,7 +49,7 @@ SharingPopup={
             selected:true
         })
     },
-    openopen:function(type){
+    getinfo:function(type){
         chrome.tabs.getSelected(null,function(tab){
             var site={
                 url:tab.url,
@@ -57,12 +57,12 @@ SharingPopup={
                 favIconUrl:tab.favIconUrl,
                 type:type
             };
-            localStorage.onclickedcontext=JSON.stringify(site);
-            $("#hi-"+type).toggle();
+            alert(JSON.stringify(site))
+            
         })
     },
-    getinfo:function(){
-        alert(localStorage.onclickedcontext);
+    opentogle:function(type){
+        $("#site-"+type).toggle();
     },
     showSite:function(){
         sites=JSON.parse(localStorage.sharingStaticData);
@@ -73,8 +73,12 @@ SharingPopup={
             
             if(sites.websites[i].contextMenuId && sites.websites[i].contextMenuId!=-1){
                 out+="<tr><td>"
-                out+="<a onclick='SharingPopup.openopen(\""+sites.websites[i].value+"\")'>"+sites.websites[i].name+"<a>";
-                out+="<div id='hi-"+sites.websites[i].value+"' style='display: none'><a onclick='SharingPopup.getinfo()' href='#'>eshta ya m3lem</a></div>";
+                out+="<a onclick='SharingPopup.opentogle(\""+sites.websites[i].value+"\")'>"+sites.websites[i].name+"<a>";
+                out+="<div id='site-"+sites.websites[i].value+"' style='display: none'>"
+                out+="<input type='text'  id='msg-facebook' />"
+                out+="<button onclick='SharingPopup.getinfo(\""+sites.websites[i].value+"\")'>Share</button>"
+                out+="</div>";
+                //<a onclick='SharingPopup.getinfo()' href='#'>eshta ya m3lem</a>
                 out+="</td></tr>";
             }
             
@@ -96,6 +100,6 @@ $(function(){
  *
  * <a onclick="SharingPopup.openopen()" name="facebook" id="sharesite">Facebook</a>
                         <div id="hi" style="display: none">
-                            <a onclick="SharingPopup.getinfo()" href="#">eshta ya m3lem</a>
+                            
                         </div>
  **/

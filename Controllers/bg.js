@@ -158,7 +158,7 @@ ShareLinksBG={
                 
         dbDriver.insert(link,jsonData.des ,new Date().toString(), jsonData.type)
         if(jsonData.type=="gmail"){
-            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(jsonData.url),'mypage',"width=500,height=400");
+            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&su="+encodeURIComponent(jsonData.des)+"&body="+encodeURIComponent(jsonData.url),'mypage',"width=500,height=400");
         }
         
     },

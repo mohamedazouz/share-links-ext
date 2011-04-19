@@ -85,6 +85,10 @@ SharingPopup={
         }
         out+="</table>"
         $("#easyShareArea").html(out)
+    },
+    trysomething:function(){
+        background.ShareLinksBG.trysomething();
+        //alert(localStorage.image)
     }
 
 }

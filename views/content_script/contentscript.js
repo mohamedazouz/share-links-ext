@@ -6,9 +6,18 @@ script={
     show:function(onclickedcontext){
         if(!container){
             site=JSON.parse(onclickedcontext);
+
             if(site.value=="gmail"){
-                window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(site.url),'mypage',"width=500,height=400");
-            }else{
+                json={
+                    'share': 'done',
+                    type:site.value,
+                    url:site.url,
+                    des:site.pagetitle
+
+                }
+                script.sendrequest(json);
+            }else
+            {
                 //extension container ui
                 container  = document.createElement('div');
                 container.setAttribute("class", "share-container f");
@@ -87,7 +96,7 @@ script={
                 var shareImage=document.createElement('div');
                 shareImage.setAttribute("class", "share-image");
                 var shareImage_img  = document.createElement('img');
-                shareImage_img.setAttribute("src", site.favIconUrl);
+                shareImage_img.setAttribute("src", document.getElementsByTagName("img")[0].src);
                 shareImage_img.setAttribute("width",110);
                 shareImage_img.setAttribute("height",78);
                 shareImage.appendChild(shareImage_img);
@@ -117,17 +126,25 @@ script={
                         des:site.pagetitle
 
                     }
-                    chrome.extension.sendRequest(json, sucess);
-                    function sucess(back){
-                        alert(back)
-                        script.fade(-1)
-                    }
+                    script.sendrequest(json);
+                //                chrome.extension.sendRequest(json, sucess);
+                //                function sucess(back){
+                //                    alert(back)
+                //                    script.fade(-1)
+                //                }
                 }
                 container.appendChild(button);
-
                 document.body.appendChild(container);
             }
-            
+        }
+    },
+    sendrequest:function(json){
+        chrome.extension.sendRequest(json, sucess);
+        function sucess(back){
+            if(json.type!="gmail"){
+                alert(back)
+                script.fade(-1)
+            }
         }
     },
     fade:function(d){
@@ -150,6 +167,13 @@ script={
         
         }
         container=null;
+    },
+    getimage:function(){
+        json={
+            "getimage":"ok",
+            "image":document.getElementsByTagName("img")[0].src
+        }
+        chrome.extension.sendRequest(json,function(){});
     }
 
 }

@@ -12,6 +12,7 @@ ShareLinksBG={
         if(! window.localStorage.lang){
             window.localStorage.lang=ShareLinksBG.getNavigatorLang();
         }
+        dbDriver.setup();
     },
     getNavigatorLang:function(){
         var lang=window.navigator.language;
@@ -154,11 +155,12 @@ ShareLinksBG={
                 }
             })   
         }
+                
+        dbDriver.insert(link,jsonData.des ,new Date().toString(), jsonData.type)
         if(jsonData.type=="gmail"){
-            back("done redirect!");
-            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&to="+encodeURIComponent(jsonData.to)+"&su="+encodeURIComponent(jsonData.sub)+"&body="+encodeURIComponent(jsonData.msg+jsonData.url),'mypage',"width=500,height=400");
+            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&body="+encodeURIComponent(jsonData.url),'mypage',"width=500,height=400");
         }
-
+        
     },
     open:function(redirectLink,tokenlink,handler){
         ShareLinksBG.Authenticate(0,tokenlink,function(data){
@@ -223,6 +225,12 @@ ShareLinksBG={
             window.localStorage.userPages=JSON.stringify(response.data);
             alert(window.localStorage.userPages)
         })
+    },
+    trysomething:function(callback){
+        chrome.tabs.executeScript(null,
+        {
+            "code":"chrome.extension.sendRequest({'trys': 'ok'}, script.getimage);"
+        });
     }
 }
 
@@ -236,7 +244,12 @@ function onRequest(request, sender, callback) {
         ShareLinksBG.share(request.msg,request.url,request,function(back){
             callback(back);
         });
-        
+    }
+    if (request.trys == 'ok') {
+        callback("");
+    }
+    if (request.getimage=="ok") {
+        alert(request.image);
     }
 }
 

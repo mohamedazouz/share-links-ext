@@ -249,7 +249,7 @@ function onRequest(request, sender, callback) {
         callback("");
     }
     if (request.getimage=="ok") {
-        alert(request.image);
+        localStorage.image=request.image;
     }
 }
 

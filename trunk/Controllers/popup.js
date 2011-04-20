@@ -51,13 +51,15 @@ SharingPopup={
     },
     getinfo:function(type){
         chrome.tabs.getSelected(null,function(tab){
-            var site={
+            var jsonData={
                 url:tab.url,
-                pagetitle:tab.title,
-                favIconUrl:tab.favIconUrl,
+                des:tab.title,
+                img:localStorage.image,
                 type:type
             };
-            alert(JSON.stringify(site))
+            background.ShareLinksBG.share($("#msg-"+type).val(), tab.url,jsonData,function(res){
+                alert(res);
+            });
             
         })
     },
@@ -73,11 +75,17 @@ SharingPopup={
             
             if(sites.websites[i].contextMenuId && sites.websites[i].contextMenuId!=-1){
                 out+="<tr><td>"
-                out+="<a onclick='SharingPopup.opentogle(\""+sites.websites[i].value+"\")'>"+sites.websites[i].name+"<a>";
-                out+="<div id='site-"+sites.websites[i].value+"' style='display: none'>"
-                out+="<input type='text'  id='msg-facebook' />"
-                out+="<button onclick='SharingPopup.getinfo(\""+sites.websites[i].value+"\")'>Share</button>"
-                out+="</div>";
+                if(sites.websites[i].value!="gmail"){
+                    out+="<a onclick='SharingPopup.opentogle(\""+sites.websites[i].value+"\")'>"+sites.websites[i].name+"<a>";
+                    out+="<div id='site-"+sites.websites[i].value+"' style='display: none'>"
+                    out+="<input type='text'  id='msg-"+sites.websites[i].value+"' />"
+                    out+="<button onclick='SharingPopup.getinfo(\""+sites.websites[i].value+"\")'>Share</button>"
+                    out+="</div>";
+                }else
+                {
+                 out+="<a onclick='SharingPopup.getinfo(\""+sites.websites[i].value+"\")'>Share on "+sites.websites[i].name+"</a>"
+                }
+                
                 //<a onclick='SharingPopup.getinfo()' href='#'>eshta ya m3lem</a>
                 out+="</td></tr>";
             }
@@ -88,7 +96,7 @@ SharingPopup={
     },
     trysomething:function(){
         background.ShareLinksBG.trysomething();
-        //alert(localStorage.image)
+    //alert(localStorage.image)
     }
 
 }

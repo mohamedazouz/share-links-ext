@@ -1,0 +1,129 @@
+body {
+	margin:0;
+	padding:0;
+	direction:rtl;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:14px;
+	color:#213600;
+}
+a {
+	text-decoration:none;
+}
+img {
+	border:none;
+}
+.f {
+	float:right;
+}
+.f-r {
+	float:left;
+}
+.nl {
+	clear:both;
+	line-height:0;
+	font-size:0;
+	height:0;
+}
+/*------ option page style ---------*/
+.main-container{
+	width:800px;
+	height:740px;
+	border:1px solid #213600;
+	-webkit-border-radius: 10px;
+	background:url(../images/option-bg.png) no-repeat;
+	margin:20px auto;
+	}
+.logo{
+	padding:20px;
+	}
+.main-title{
+	background:url(../images/options-title.png);
+	width:556px;
+	height:27px;
+	padding:0 10px;
+	line-height:27px;
+	}
+.services-container{
+	width: 590px;
+	}
+.service{
+	width:90px;
+	padding: 25px 14px;
+	}
+.service-logo{
+	width:43px;
+	height:58px;
+	margin:0 auto;
+	}
+/* -- services texts-- */
+
+.services-texts{
+	text-align:center;
+	padding: 5px 0;
+	font-size:13px;
+	white-space:nowrap;
+	}
+.twitter{
+	color:#48c2e4;
+	}
+.facebook{
+	color:#4065ba;
+	}
+.gmail{
+	color:#a90404;
+	}
+.linked-in{
+	color:#55a7c9;
+	}
+.google{
+	color:#29a93c;
+	}
+.yahoo{
+	color:#703076;
+	}
+.google-app{
+	color:#ff3d3d;
+	}
+.msn{
+	color:#1780c2;
+	}
+/* -- EO services texts-- */
+.add-button {
+	width:90px;
+	height: 25px;
+	padding-bottom: 4px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#416b00), to(#213600));
+	-webkit-border-radius:5px;
+	border:0;
+	color:#FFF;
+	font-family:Tahoma, Geneva, sans-serif;
+	cursor:pointer;
+}
+.add-button:hover{
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffa200), to(#d98a00));
+	}
+
+.checkbox-container{
+	width:100%;
+	}
+.checkbox-container label{
+	width:167px;
+	padding: 0 20px;
+	}
+/* -- checkbox style -- */
+.jquery-checkbox       {display: inline; font-size: 20px; line-height: 20px; cursor: pointer; cursor: hand;}
+.jquery-checkbox .mark {display: inline;}
+.jquery-checkbox img {vertical-align: middle; width: 70px; height: 23px;}
+.jquery-checkbox img{background: transparent url(../images/checkbox1.png) no-repeat;}
+
+.jquery-checkbox img{
+	background-position: 0px 0px;
+}
+.jquery-checkbox-checked img{
+	background-position: 0px -23px;
+}
+/* -- EO checkbox style -- */
+.save-button{
+	padding:0 35px;
+	margin-top: 89px;
+	}

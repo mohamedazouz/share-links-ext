@@ -1,0 +1,28 @@
+{
+    "name":"__MSG_extname__",
+    "version": "1.0",
+    "description": "__MSG_extdesc__",
+    "default_locale":"en",
+    "background_page": "views/background.html",
+    "icons":{
+        "16": "views/images/logo.png",
+        "48": "views/images/logo.png",
+        "128": "views/images/logo.png"
+    },
+    "browser_action": {
+        "default_icon": "views/images/logo.png",
+        "default_title": "Share your Link !",
+        "popup": "views/popup.html"
+    },
+    "permissions": [
+        "contextMenus", "http://*/*","tabs","notifications"
+    ],
+    "options_page":"views/option.html",
+     "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["http://*/*"],
+      "css":["views/css/style.css"],
+      "js": ["views/content_script/contentscript.js"]
+    }]
+}

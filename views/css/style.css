@@ -301,7 +301,7 @@ img {
 	}
 .gredient-box input[type='text']{
 	height:13px;
-	margin:10px 21px 10px 0;
+	margin:10px 21px 0px 0;
 	box-shadow: 0px 1px 4px #ADB8B1;
 	outline:none;
 	}
@@ -312,7 +312,11 @@ img {
 	overflow:hidden;
 	border:1px solid #335300;
 	margin-right:10px;
+	margin-top:10px;
 	outline:none;
+	}
+.gmail-text{
+	width:251px !important;
 	}
 .gredient-box input[type='submit']{
 	border:0;

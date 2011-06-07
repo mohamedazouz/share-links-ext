@@ -1,0 +1,53 @@
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+{
+    "extname":{
+        "message":"Easy Share",
+        "description":"Extension Name"
+    },
+    "extdesc":{
+        "message":"It shares text and urls in social networks !",
+        "description":"Extension description"
+    },
+    //------------------------POPUP PAGE ----------------------------
+    "sharequickly":{
+        "message":"شارك سريعا",
+        "description":"share quickly label"
+    },
+    "shorternUrl":{
+        "message":"مختصر الروابط",
+        "description":"short url label"
+    },
+    "short":{
+        "message":"copy",
+        "description":"copy buttton"
+    },
+    "setting":{
+        "message":"الأعدادات",
+        "description":"setting link"
+    },
+    //------------------------OPTION PAGE ----------------------------
+    "choose":{
+        "message":"أختر الخدمات المفضلة لديك",  
+        "description":"Extension description"
+    },
+    "linkappear":{
+        "message":"أختر طريقة ظهور مختصر الروابط",
+        "description":"options display title"
+    },
+    "mainappear":{
+        "message":"فى القائمة الرئيسية",
+        "description":"Appear shortner in Main menue"
+    },
+    "mouseappear":{
+        "message":"عند نقر الزر الماوس الايمن",
+        "description":"Appear shortner when right click"
+    },
+    "save":{
+        "message":"save",
+        "description":"save Button value"
+    }
+}

@@ -6,6 +6,7 @@ ShareLinksBG={
             localStorage.installed=1;
         }
         ShareLinksBG.createMainContextMenu();
+        
     },
     createMainContextMenu:function(){
         if(localStorage.shortrightclick=="1"){
@@ -47,8 +48,28 @@ ShareLinksBG={
         };
         id=chrome.contextMenus.create(createProperties);
         return id;
+    },
+    getPageImage:function(callback){
+        chrome.tabs.executeScript(null,
+        {
+            "code":"chrome.extension.sendRequest({'trys': 'ok'}, script.getimage);"
+        });
     }
 }
 $(function(){
     ShareLinksBG.init();
 });
+
+function onRequest(request, sender, callback) {
+    if (request.trys == 'ok') {
+        callback("");
+    }
+    if (request.getimage=="ok") {
+        var x=chrome.extension.getViews({
+            type:"popup"
+        })
+        x[0].SharingPopup.setPageImage(request.image);
+    }
+}
+
+chrome.extension.onRequest.addListener(onRequest);

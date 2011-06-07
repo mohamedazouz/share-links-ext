@@ -16,5 +16,11 @@
     //"options_page":"views/option.html",
     "permissions": [
         "contextMenus", "http://*/*","tabs","notifications"
-    ]
+    ],
+     "content_scripts": [
+    {
+      "all_frames": true,
+      "matches": ["http://*/*"],
+      "js": ["views/content_script/contentscript.js"]
+    }]
 }

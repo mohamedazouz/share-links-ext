@@ -28,10 +28,7 @@ img {
 .main-container{
 	width:800px;
 	height:740px;
-	border:1px solid #213600;
-	-webkit-border-radius: 10px;
-	background:url(../images/option-bg.png) no-repeat;
-	margin:20px auto;
+	margin:0px auto;
 	}
 .logo{
 	padding:20px;
@@ -103,27 +100,51 @@ img {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffa200), to(#d98a00));
 	}
 
-.checkbox-container{
-	width:100%;
-	}
-.checkbox-container label{
-	width:167px;
-	padding: 0 20px;
-	}
-/* -- checkbox style -- */
-.jquery-checkbox       {display: inline; font-size: 20px; line-height: 20px; cursor: pointer; cursor: hand;}
-.jquery-checkbox .mark {display: inline;}
-.jquery-checkbox img {vertical-align: middle; width: 70px; height: 23px;}
-.jquery-checkbox img{background: transparent url(../images/checkbox1.png) no-repeat;}
 
-.jquery-checkbox img{
-	background-position: 0px 0px;
-}
-.jquery-checkbox-checked img{
-	background-position: 0px -23px;
-}
 /* -- EO checkbox style -- */
 .save-button{
 	padding:0 35px;
 	margin-top: 89px;
 	}
+/* -- new -- */
+.header{
+    width:800px;
+    margin:0 auto;
+    font-family:Tahoma, Geneva, sans-serif;
+	padding-top:15px;
+
+}
+.searh-container{
+    padding:3px 0px;
+    width:100%;
+    border-top:1px solid #b37d00;
+    border-bottom:1px solid #b37d00;
+    margin-top:10px;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:14px;
+}
+.searh-elements{
+    width:800px;
+    margin:0 auto;
+    color:#213600;
+}
+.setteing-button{
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#DFDFDF));
+    box-shadow: 0px 0px 2px #8B8B8B inset;
+    -webkit-border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    margin: 0 0px 0 10px;
+    color:#335300;
+}
+.history-box{
+    width:780px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#FFF));
+    padding:15px 10px;
+    font:12px Tahoma, Geneva, sans-serif;
+    direction:rtl;
+    border-bottom:1px solid #cbcbcb;
+}
+.last{
+    border:0;
+}

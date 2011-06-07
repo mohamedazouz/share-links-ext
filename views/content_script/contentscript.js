@@ -90,13 +90,15 @@ script={
                     container.removeChild(shareTxt);
                 }
 
-            
 
-            
+            image="";
+            if(document.getElementsByTagName("img").length>0){
+                image=document.getElementsByTagName("img")[0].src;
+            }
                 var shareImage=document.createElement('div');
                 shareImage.setAttribute("class", "share-image");
                 var shareImage_img  = document.createElement('img');
-                shareImage_img.setAttribute("src", document.getElementsByTagName("img")[0].src);
+                shareImage_img.setAttribute("src", image);
                 shareImage_img.setAttribute("width",110);
                 shareImage_img.setAttribute("height",78);
                 shareImage.appendChild(shareImage_img);
@@ -122,7 +124,7 @@ script={
                         type:type,
                         msg:msg.value,
                         url:site.url,
-                        img:document.getElementsByTagName("img")[0].src,
+                        img:image,
                         des:site.pagetitle
 
                     }

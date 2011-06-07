@@ -29,7 +29,7 @@ img {
 .main-container {
 	width:374px;
 }
-.center-container {
+/*.center-container {
 	width:360px;
 	margin:0 auto;
 	-webkit-border-radius:10px;
@@ -147,7 +147,7 @@ img {
 .validation {
 	text-align:center;
 	color:#555555;
-}
+}*/
 /*------ share link popup style ---------*/
 .share-container {
 	width:480px;

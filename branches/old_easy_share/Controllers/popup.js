@@ -1,30 +1,44 @@
 var background=chrome.extension.getBackgroundPage();
 SharingPopup={
     shortenerUrl:"",
+    pageInfo:"",
     init:function(){
-        SharingPopup.showCopyShortenerUrl();
+        SharingPopup.getPageInfo(function(response){
+            SharingPopup.showCopyShortenerUrl(response);
+            $("#page-desc").html(response.title);
+            $("#page-url").html(response.url);
+        })
+        background.ShareLinksBG.getPageImage();
+    },
+    getPageInfo:function(callback){
+        chrome.tabs.getSelected(null,function(tab){
+            SharingPopup.pageInfo=tab;
+            callback(tab)
+        })
     },
     copy:function (){
         background.ShareLinksBG.copyurl(SharingPopup.shortenerUrl)
     },
-    showCopyShortenerUrl:function(){
+    showCopyShortenerUrl:function(tab){
         if(localStorage.shortpopup=="1"){
-            chrome.tabs.getSelected(null,function(tab){
-                background.ShareLinksBG.getShortenerUrl(tab.url,function(response){
-                    if(response!="error"){
-                        SharingPopup.shortenerUrl=response.short_url;
-                        $("#shortenerurl").html(response.short_url)
-                    }else
-                    {
-                        $("#shorturl").hide();
-                    }
-                })
+            background.ShareLinksBG.getShortenerUrl(tab.url,function(response){
+                if(response!="error"){
+                    SharingPopup.shortenerUrl=response.short_url;
+                    $("#shortenerurl").html(response.short_url)
+                }else
+                {
+                    $("#shorturl").hide();
+                }
             })
         }else
         {
             $("#shorturl").hide();
         }
+    },
+    setPageImage:function(image){
+        $("#page-pic").attr("src",image);
     }
+
 }
 $(function(){
     SharingPopup.init();

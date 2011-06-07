@@ -17,12 +17,12 @@
     "permissions": [
         "contextMenus", "http://*/*","tabs","notifications"
     ],
-    "options_page":"views/option.html",
-     "content_scripts": [
-    {
-      "all_frames": true,
-      "matches": ["http://*/*"],
-      "css":["views/css/style.css"],
-      "js": ["views/content_script/contentscript.js"]
-    }]
+    "options_page":"views/option.html"
+//     "content_scripts": [
+//    {
+//      "all_frames": true,
+//      "matches": ["http://*/*"],
+//      "css":["views/css/style.css"],
+//      "js": ["views/content_script/contentscript.js"]
+//    }]
 }

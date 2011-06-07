@@ -247,6 +247,10 @@ img {
     margin: 0px 10px;
     -webkit-border-radius: 4px;
 }
+.link-image img{
+	width:75px;
+	height:55px;
+}
 .link-breif{
     font-size:12px;
     color:#4e4e4e;

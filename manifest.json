@@ -13,6 +13,7 @@
         "default_title": "Share your Link !",
         "popup": "views/popup.html"
     },
+    //"options_page":"views/option.html",
     "permissions": [
         "contextMenus", "http://*/*","tabs","notifications"
     ]

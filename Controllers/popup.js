@@ -1,0 +1,31 @@
+var background=chrome.extension.getBackgroundPage();
+SharingPopup={
+    shortenerUrl:"",
+    init:function(){
+        SharingPopup.showCopyShortenerUrl();
+    },
+    copy:function (){
+        background.ShareLinksBG.copyurl(SharingPopup.shortenerUrl)
+    },
+    showCopyShortenerUrl:function(){
+        if(localStorage.shortpopup=="1"){
+            chrome.tabs.getSelected(null,function(tab){
+                background.ShareLinksBG.getShortenerUrl(tab.url,function(response){
+                    if(response!="error"){
+                        SharingPopup.shortenerUrl=response.short_url;
+                        $("#shortenerurl").html(response.short_url)
+                    }else
+                    {
+                        $("#shorturl").hide();
+                    }
+                })
+            })
+        }else
+        {
+            $("#shorturl").hide();
+        }
+    }
+}
+$(function(){
+    SharingPopup.init();
+});

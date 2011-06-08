@@ -1,86 +1,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<!-- styles -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Untitled Document</title>
+        <!-- styles -->
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="../Controllers/history.js"></script>
+        <script type="text/javascript" src="../Controllers/bdConnector.js"></script>
+    </head>
 
-<body>
-    <div class="header">
-		<img src="images/logo.png" class="f" />    
-        <a class="setteing-button f-r">إعدادات</a>
-        <a class="setteing-button f-r">مشاركات سابقة </a>
-    </div>
-    <div class="searh-container f">
-    	<div class="searh-elements">
-        	<label class="f">بحث فى المشاركات السابقة</label>
-            <input name="" type="text" class="f" />
-            <input name="" type="submit" class="f" value="" />
-            <a >حذف العناصر المختارة </a>  | <a>  حذف الكل</a>
+    <body>
+        <div class="header">
+            <img src="images/logo.png" class="f" />
+            <a class="setteing-button f-r" href="option.html" target="blank">إعدادات</a>
+            <a class="setteing-button f-r">مشاركات سابقة </a>
         </div>
-    </div>
-    <div class="history-container">
-  <div class="history-box f">
-        	<div class="tit">اليوم:  الاحد  17 أبريل  2011</div>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/gmail.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/google.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/linkedIn.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
+        <div class="searh-container f">
+            <div class="searh-elements">
+                <label class="f">بحث فى المشاركات السابقة</label>
+                <input name="" type="text" class="f" />
+                <input name="" type="submit" class="f" value="" />
+                <a >حذف العناصر المختارة </a>  | <a>  حذف الكل</a>
+            </div>
         </div>
-        
-        <div class="history-box f">
-        	<div class="tit">اليوم:  الخميس 21 أبريل  2011</div>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/facebook.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/twitter.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            
+        <div class="history-container">
+            <div class="history-box f" id="history">
+                
+            </div>
+
         </div>
-        <div class="history-box f last">
-        	<div class="tit">اليوم:  الاحد  17 أبريل  2011</div>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/gmail.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/google.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-            <label class="f">
-            	<input name="" type="checkbox" value="" class="f" />
-                <img src="images/linkedIn.png" class="f"/>
-                <a class="f">العربي: الاستقرار في سوريا يرتبط بشكل مباشر بالأمن القومي المصري</a><br />
-                <a class="f history-box-link">http://www.shorouknews.com/ContentData.aspx?id=471550</a>
-            </label>
-        </div>
-    </div>
-</body>
+    </body>
 </html>

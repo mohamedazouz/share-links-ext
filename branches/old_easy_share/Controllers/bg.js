@@ -94,8 +94,12 @@ ShareLinksBG={
                 success:function(res){
                     if(res.oauth_token){ //twitter auth
                         window.localStorage.twitter_access_token=JSON.stringify(res);
-                    }else{//facebook auth
-                        window.localStorage.access_token=JSON.stringify(res);
+                    }else{
+                        if(res.authToken){//gmail
+                            window.localStorage.gmailAuthToken=JSON.stringify(res);
+                        }else{//facebook auth
+                            window.localStorage.access_token=JSON.stringify(res);
+                        }
                     }
                     handler("done");
                 },
@@ -114,13 +118,13 @@ ShareLinksBG={
         }
 
     },
-    getFacebookUserInfo:function(access_token,handler){
+    getFacebookUserInfo:function(access_token,callback){
         token=JSON.parse(access_token);
         FB.api('/me',{
             access_token:token.access_token
         }, function(response) {
             window.localStorage.userInfo=JSON.stringify(response);
-            handler(response.name);
+            callback(response.name);
         //alert(window.localStorage.userInfo)
         })
         FB.api('/me/accounts',{
@@ -131,8 +135,28 @@ ShareLinksBG={
         //alert(window.localStorage.userPages)
         })
     },
-    getTwitterUserInfo:function(handler){
-        handler(JSON.parse(localStorage.twitter_access_token).screen_name);
+    getTwitterUserInfo:function(callback){
+        callback(JSON.parse(localStorage.twitter_access_token).screen_name);
+    },
+    getGmailUserInfo:function(callback){
+        //alert(JSON.parse(window.localStorage.gmailAuthToken).authToken)
+        var url=SharingStaticData.gmailGetContactlistUrl;
+        json={
+            token:JSON.parse(window.localStorage.gmailAuthToken).authToken
+        }
+        $.ajax({
+            url:url,
+            dataType: "html",
+            data:json,
+            success:function(response){
+                window.localStorage.gmailUserContact=response;
+                callback(JSON.parse(response)[0].name)
+            },
+            error:function(data){
+                console.log("error")
+                callback("error")
+            }
+        })
     },
     createContextMenu:function(name,parendId){
         createProperties={
@@ -206,10 +230,33 @@ ShareLinksBG={
                 }
             })
         }
-        dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
+        
         if(jsonData.type=="gmail"){
-            window.open("https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&su="+encodeURIComponent(jsonData.des)+"&body="+encodeURIComponent(jsonData.url),'mypage',"width=500,height=400");
+                var url=SharingStaticData.gmailSendMessage;
+                var msg = jsonData.msg  + "<br>"+ jsonData.url;
+                json={
+                    to:jsonData.to,
+                    from:jsonData.from,
+                    su:jsonData.su,
+                    msg:msg
+                }
+                //alert(JSON.stringify(json));
+                $.ajax({
+                    url:url,
+                    dataType: "html",
+                    data:json,
+                    success:function(data){
+                        console.log("done")
+                        alert("jkasdkjhadkjaksdhkadkhasd "+data)
+                        back(data)
+                    },
+                    error:function(data){
+                        console.log("error")
+                        back(data)
+                    }
+                })
         }
+    //dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
     }
 }
 $(function(){

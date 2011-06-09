@@ -67,7 +67,13 @@ SharingOptions={
             });
         }
         if(type=="gmail"){
-            handler("done");
+            redirecturl=SharingStaticData.gmailRedirectUrl;
+            tokenurl=SharingStaticData.gmailAuthTokenurl;
+            background.ShareLinksBG.open(redirecturl,tokenurl,function(data){
+                background.ShareLinksBG.getGmailUserInfo(function(response){
+                    handler(response);
+                })
+            });
         }       
     },
     save:function(){

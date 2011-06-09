@@ -63,6 +63,23 @@ SharingPopup={
                     out+="</span>";
                     out+="<input name='' type='text' class='f' />";
                 }
+                if(SharingPopup.sites.websites[i].value=="gmail"){
+                    out+="<label class='f'>أرسل إلى</label>";
+                    //out+="<input  type='text' class='f gmail-text' id='to'/>";
+                    contacts=JSON.parse(localStorage.gmailUserContact)
+                    out+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
+                    out+="<select id='to' class='f'>";
+                    for(j=1;j<contacts.length;j++){
+                        var name=contacts[j].name;
+                        if(name==""){
+                            name=contacts[j].email;
+                        }
+                        out+="<option value='"+contacts[j].email+"'>"+name+"</option>";
+                    }
+                    out+="</select>"
+                    out+="<label class='f'>عنوان</label>";
+                    out+="<input  type='text' class='f gmail-text' id='su'/>"
+                }
                 out+="<textarea id='"+SharingPopup.sites.websites[i].value+"' cols='' rows='' class='f'></textarea>";
                 out+="<input type='submit' class='f-r' value='إرسال' onclick='SharingPopup.share(\""+SharingPopup.sites.websites[i].value+"\")'/>";
                 out+="</div>";
@@ -81,9 +98,14 @@ SharingPopup={
         if(type=="facebook"){
             json.pageId=$("#facebookPages").val();
         }
+        if(type=="gmail"){
+            json.to=$("#to").val();
+            json.su=$("#su").val();
+            json.from=$("#from").val();
+        }
         //alert(JSON.stringify(json))
         background.ShareLinksBG.share(json,function(response){
-          console.log(response)
+            console.log(response)
         })
     }
 

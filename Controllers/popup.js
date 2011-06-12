@@ -65,18 +65,22 @@ SharingPopup={
                 }
                 if(SharingPopup.sites.websites[i].value=="gmail"){
                     out+="<label class='f'>أرسل إلى</label>";
-                    //out+="<input  type='text' class='f gmail-text' id='to'/>";
+                    out+="<input  type='text' class='f gmail-text' id='to'/>";
                     contacts=JSON.parse(localStorage.gmailUserContact)
                     out+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
-                    out+="<select id='to' class='f'>";
+                   /* out+="<select id='to' class='f'>";
                     for(j=1;j<contacts.length;j++){
                         var name=contacts[j].name;
                         if(name==""){
                             name=contacts[j].email;
                         }
-                        out+="<option value='"+contacts[j].email+"'>"+name+"</option>";
+                        for(k=0;k<contacts[j].email.length;k++){
+                            out+="<option value='"+contacts[j].email[k]+"'>";
+                            out+=name+" < " +contacts[j].email[k] + " >";
+                            out+="</option>";
+                        }
                     }
-                    out+="</select>"
+                    out+="</select>"*/
                     out+="<label class='f'>عنوان</label>";
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }

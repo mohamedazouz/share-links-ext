@@ -8,11 +8,29 @@
         <!-- scripts -->
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="../Controllers/popup.js"></script>
+        <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/demo/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
+        <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.dimensions.js"></script>
+        <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.clickme').click(function() {
                     $(this).parent().children('.fields').slideToggle('slow');
                 });
+                contacts=JSON.parse(localStorage.gmailUserContact)
+                data=[];
+                for(j=1;j<contacts.length;j++){
+                    var name=contacts[j].name;
+                    if(name==""){
+                        name=contacts[j].email;
+                    }
+                    for(k=0;k<contacts[j].email.length;k++){
+                        data.push(name+"<" +contacts[j].email[k] + ">");   
+                    }
+                }
+                $("#to").autocomplete(data);
             })
         </script>
     </head>
@@ -21,7 +39,7 @@
         <div class="main-container" style="direction:rtl;">
             <div class="gredient-box f">
                 <span class="logo f"><img src="images/logo.png" width="50" /></span>
-                <a class="setteing-button f-r" href="option.html">إعدادات</a>
+                <a class="setteing-button f-r" href="option.html" target="blank">إعدادات</a>
                 <a class="setteing-button f-r" href="history.html" target="blank">مشاركات سابقة </a>
             </div>
 

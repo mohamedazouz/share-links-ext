@@ -234,13 +234,14 @@ ShareLinksBG={
         if(jsonData.type=="gmail"){
                 var url=SharingStaticData.gmailSendMessage;
                 var msg = jsonData.msg  + "<br>"+ jsonData.url;
+                to=jsonData.to;
+                to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
                 json={
-                    to:jsonData.to,
+                    to:to,
                     from:jsonData.from,
                     su:jsonData.su,
                     msg:msg
                 }
-                //alert(JSON.stringify(json));
                 $.ajax({
                     url:url,
                     dataType: "html",

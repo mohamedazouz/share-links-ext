@@ -228,6 +228,7 @@ img {
     font-family:Tahoma, Geneva, sans-serif;
     color:#335300;
     font-size:12px;
+	position:relative;
 }
 .gredient-box .logo {
     padding:0 15px;

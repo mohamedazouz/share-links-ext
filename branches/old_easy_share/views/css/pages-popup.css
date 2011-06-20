@@ -1,0 +1,71 @@
+.share-bullet{
+    width:5px;
+    height:4px;
+    background:#FFF;
+    border-color:#868686;
+    border-style:solid;
+    border-width:2px 1px 1px 1px;
+    margin:3px 2px;
+}
+.share-fields{
+    padding:0 5px;
+    display:block !important;
+}
+.share-gredient-box label{
+    margin:0 16px;
+    margin-top:10px;
+}
+.share-input-shadow{
+    box-shadow: 0px 1px 4px #ADB8B1;
+    margin-top:10px;
+    padding:0;
+}
+.share-gredient-box select, .share-gredient-box input[type='text']{
+    height:17px;
+    border:1px solid #335300;
+    width:125px;
+    outline:none;
+    font-size:11px;
+}
+.share-gredient-box input[type='text']{
+    height:13px;
+    margin:10px 21px 0px 0;
+    box-shadow: 0px 1px 4px #ADB8B1;
+    outline:none;
+}
+
+.share-gredient-box textarea{
+    width:340px;
+    height:35px;
+    overflow:hidden;
+    border:1px solid #335300;
+    margin-right:10px;
+    margin-top:10px;
+    outline:none;
+}
+.share-gmail-text{
+    width:251px !important;
+}
+.share-gredient-box input[type='submit']{
+    border:0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5f9a00), to(#335300));
+    box-shadow: 0px 0px 2px #6a6a6a inset;
+    color:#FFF;
+    font:12px Tahoma, Geneva, sans-serif;
+    margin-top:10px;
+    padding: 3px 15px;
+}
+.share-short-link{
+    padding:0 10px;
+    color:#4e4e4e;
+}
+.short-url{
+    margin-top:0;
+    width:200px;
+}
+.copy{
+    padding:3px 8px !important;
+    margin:0 !important;
+    font-size:10px !important;
+    margin-right:10px !important;
+}

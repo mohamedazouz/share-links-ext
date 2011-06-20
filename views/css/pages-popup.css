@@ -1,3 +1,11 @@
+.share-close-button {
+	position: absolute;
+	top: -18px;
+	right: -9px;
+}
+.share-pop{
+	border: 1px solid #C8C8C8;
+	}
 .share-bullet{
     width:5px;
     height:4px;
@@ -54,18 +62,4 @@
     font:12px Tahoma, Geneva, sans-serif;
     margin-top:10px;
     padding: 3px 15px;
-}
-.share-short-link{
-    padding:0 10px;
-    color:#4e4e4e;
-}
-.short-url{
-    margin-top:0;
-    width:200px;
-}
-.copy{
-    padding:3px 8px !important;
-    margin:0 !important;
-    font-size:10px !important;
-    margin-right:10px !important;
 }

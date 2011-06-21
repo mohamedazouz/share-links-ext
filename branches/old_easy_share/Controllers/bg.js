@@ -52,7 +52,7 @@ ShareLinksBG={
     getPageImage:function(callback){
         chrome.tabs.executeScript(null,
         {
-            "code":"chrome.extension.sendRequest({'trys': 'ok'}, script.getimage);"
+            "code":"chrome.extension.sendRequest({'trys': 'ok'}, essyShareScript.getimage);"
         });
     },
     setData:function(Data){
@@ -163,21 +163,28 @@ ShareLinksBG={
             "title":name,
             "contexts":["all"],
             "onclick":function(OnClickData,tab){
-                alert("Done!");
-            /*ShareLinksBG.pageurl=tab.url
-                console.log("URL:"+ShareLinksBG.pageurl)
-                site=ShareLinksBG.getContextMenueInfo(OnClickData.menuItemId)
-
-                site.url=tab.url;
-                site.text=OnClickData.selectionText;
-                site.pagetitle=tab.title;
-                //dataURL
-                site.favIconUrl=tab.favIconUrl;
-                localStorage.onclickedcontext=JSON.stringify(site);
+                json=tab;
+                site=ShareLinksBG.getContextMenueInfo(OnClickData.menuItemId);
+                json.userName=site.userName
+                json.type=site.value
+                json.name=site.name
+                text=""
+                if(OnClickData.selectionText){
+                    text=OnClickData.selectionText;
+                }
+                json.msg=text;
+                if(json.type=="facebook"){
+                    json.userpages=JSON.parse(localStorage.userPages)
+                }
+                if(json.type=="gmail"){
+                    json.contacts=JSON.parse(localStorage.gmailUserContact)
+                }
+                localStorage.onclickedcontext=JSON.stringify(json);
+                
                 chrome.tabs.executeScript(null,
                 {
-                    "code":"chrome.extension.sendRequest({'click': 'ok'}, script.show);"
-                });*/
+                    "code":"chrome.extension.sendRequest({'showPopup': 'true'}, essyShareScript.showPopUp);"
+                });
             },
             "parentId":parendId
         };
@@ -232,32 +239,32 @@ ShareLinksBG={
         }
         
         if(jsonData.type=="gmail"){
-                var url=SharingStaticData.gmailSendMessage;
-                var msg = jsonData.msg  + "<br>"+ jsonData.url;
-                to=jsonData.to;
-                to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
-                json={
-                    to:to,
-                    from:jsonData.from,
-                    su:jsonData.su,
-                    msg:msg
+            var url=SharingStaticData.gmailSendMessage;
+            var msg = jsonData.msg  + "<br>"+ jsonData.url;
+            to=jsonData.to;
+            to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
+            json={
+                to:to,
+                from:jsonData.from,
+                su:jsonData.su,
+                msg:msg
+            }
+            $.ajax({
+                url:url,
+                dataType: "html",
+                data:json,
+                success:function(data){
+                    console.log("done")
+                    alert("jkasdkjhadkjaksdhkadkhasd "+data)
+                    back(data)
+                },
+                error:function(data){
+                    console.log("error")
+                    back(data)
                 }
-                $.ajax({
-                    url:url,
-                    dataType: "html",
-                    data:json,
-                    success:function(data){
-                        console.log("done")
-                        alert("jkasdkjhadkjaksdhkadkhasd "+data)
-                        back(data)
-                    },
-                    error:function(data){
-                        console.log("error")
-                        back(data)
-                    }
-                })
+            })
         }
-    //dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
+        dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
     }
 }
 $(function(){
@@ -273,6 +280,14 @@ function onRequest(request, sender, callback) {
             type:"popup"
         })
         x[0].SharingPopup.setPageImage(request.image);
+    }
+    if(request.showPopup=="true"){
+        callback(JSON.parse(localStorage.onclickedcontext));
+    }
+    if (request.share == 'done') {
+        ShareLinksBG.share(request,function(back){
+            callback(back);
+        });
     }
 }
 

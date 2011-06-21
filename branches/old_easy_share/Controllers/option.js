@@ -30,7 +30,7 @@ SharingOptions={
     },
     addSite:function(site,i){
         SharingOptions.open(SharingOptions.sites.websites[i].value,function(data){
-            alert(data)
+            alert("Welcome "+data + "!")
             pId= parseInt(localStorage.sharingParentID);
             SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
             SharingOptions.sites.websites[i].userName=data;

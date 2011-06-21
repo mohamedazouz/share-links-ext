@@ -16,21 +16,20 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
-                $('.clickme').click(function() {
-                    $(this).parent().children('.fields').slideToggle('slow');
-                });
-                contacts=JSON.parse(localStorage.gmailUserContact)
-                data=[];
-                for(j=1;j<contacts.length;j++){
-                    var name=contacts[j].name;
-                    if(name==""){
-                        name=contacts[j].email;
+                if(localStorage.gmailUserContact){
+                    contacts=JSON.parse(localStorage.gmailUserContact)
+                    data=[];
+                    for(j=1;j<contacts.length;j++){
+                        var name=contacts[j].name;
+                        if(name==""){
+                            name=contacts[j].email;
+                        }
+                        for(k=0;k<contacts[j].email.length;k++){
+                            data.push(name+"<" +contacts[j].email[k] + ">");
+                        }
                     }
-                    for(k=0;k<contacts[j].email.length;k++){
-                        data.push(name+"<" +contacts[j].email[k] + ">");   
-                    }
+                    $("#to").autocomplete(data);
                 }
-                $("#to").autocomplete(data);
             })
         </script>
     </head>
@@ -50,38 +49,7 @@
                 <div class="f link-url" id="page-url"></div>
             </div>
             <div id="websites">
-                <div class="gredient-box f">
-                    <p class="clickme">
-                        <span class="bullet f"></span>
-                        <img src="images/facebook-1.png" class="f social-logo" />
-                        <span class="f">facebook</span>
-                        <span class="f-r">Ahmed Ali</span>
-                    </p>
-                    <div class="fields"  >
-                        <label class="f">أرسل إلى</label>
-                        <span class="input-shadow f">
-                            <select name="" class="f">
-                                <option>page</option>
-                                <option>b</option>
-                            </select>
-                        </span>
-                        <input name="" type="text" class="f" />
-                        <textarea name="" cols="" rows="" class="f"></textarea>
-                        <input type="submit" class="f-r" value="إرسال"/>
-                    </div>
-                </div>
-                <div class="gredient-box f">
-                    <p class="clickme">
-                        <span class="bullet f"></span>
-                        <img src="images/twitter-1.png" class="f social-logo" />
-                        <span class="f">twitter</span>
-                        <span class="f-r">Ahmed Ali</span>
-                    </p>
-                    <div class="fields">
-                        <textarea name="" cols="" rows="" class="f"></textarea>
-                        <input type="submit" class="f-r" value="إرسال"/>
-                    </div>
-                </div>
+
             </div>
             <div class="gredient-box f" id="shorturl">
                 <span class="f short-link">مختصر الروابط</span>

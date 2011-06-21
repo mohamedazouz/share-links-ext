@@ -1,7 +1,7 @@
-.f {
+.share-f {
     float:right;
 }
-.f-r {
+.share-f-r {
     float:left;
 }
 .nl {
@@ -12,13 +12,16 @@
 }
 .share-gredient-box {
     background: -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#FFF));
-    border-bottom:1px solid #c8c8c8;
+    border:1px solid #c8c8c8;
     padding:10px 0;
     width:374px;
     font-family:Tahoma, Geneva, sans-serif;
     color:#335300;
     font-size:12px;
 	position:relative;
+}
+.share-social-logo{
+    margin:0 5px;
 }
 .share-gredient-box p{
     margin:0;
@@ -50,6 +53,7 @@
 .share-gredient-box label{
     margin:0 16px;
     margin-top:10px;
+    width: 50px;
 }
 .share-input-shadow{
     box-shadow: 0px 1px 4px #ADB8B1;
@@ -71,6 +75,7 @@
     margin:10px 21px 0px 0;
     box-shadow: 0px 1px 4px #ADB8B1;
     outline:none;
+    width: 250px;
 }
 
 .share-gredient-box textarea{
@@ -93,4 +98,5 @@
     font:12px Tahoma, Geneva, sans-serif;
     margin-top:10px;
     padding: 3px 15px;
+    -webkit-border-radius:20px;
 }

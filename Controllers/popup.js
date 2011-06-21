@@ -5,13 +5,16 @@ SharingPopup={
     sites:"",
     init:function(){
         SharingPopup.getPageInfo(function(response){
-            SharingPopup.showCopyShortenerUrl(response);
-            $("#page-desc").html(response.title.substr(0, 50));
-            $("#page-url").html(response.url.substr(0, 32));
+            SharingPopup.showCopyShortenerUrl(response,function(callback){
+                $("#page-desc").html(response.title.substr(0, 50));
+                $("#page-url").html(response.url.substr(0, 32));
+                if(callback==1){
+                    SharingPopup.sites=JSON.parse(localStorage.sharingStaticData);
+                    background.ShareLinksBG.getPageImage();
+                    SharingPopup.show();
+                }
+            });
         })
-        SharingPopup.sites=JSON.parse(localStorage.sharingStaticData);
-        background.ShareLinksBG.getPageImage();
-        SharingPopup.show();
     },
     getPageInfo:function(callback){
         chrome.tabs.getSelected(null,function(tab){
@@ -22,19 +25,24 @@ SharingPopup={
     copy:function (){
         background.ShareLinksBG.copyurl(SharingPopup.shortenerUrl)
     },
-    showCopyShortenerUrl:function(tab){
+    showCopyShortenerUrl:function(tab,callback){
         background.ShareLinksBG.getShortenerUrl(tab.url,function(response){
             if(response!="error"){
                 SharingPopup.shortenerUrl=response.short_url;
                 $("#shortenerurl").html(response.short_url)
+                callback(1);
             }else
             {
                 $("#shorturl").hide();
+                callback(0);
             }
         })
     },
     setPageImage:function(image){
         $("#page-pic").attr("src",image);
+    },
+    clickMe:function(type){
+        $("#clickme-"+type).parent().children('.fields').slideToggle('slow');
     },
     show:function(){
         out="";
@@ -43,7 +51,7 @@ SharingPopup={
             site=JSON.stringify(SharingPopup.sites.websites[i])
             if(SharingPopup.sites.websites[i].contextMenuId && SharingPopup.sites.websites[i].contextMenuId!=-1){
                 out+="<div class='gredient-box f'>";
-                out+=" <p class='clickme'>";
+                out+=" <p class='clickme' id='clickme-"+SharingPopup.sites.websites[i].value+"' onclick='SharingPopup.clickMe(\""+SharingPopup.sites.websites[i].value+"\")'>";
                 out+="<span class='bullet f'></span>";
                 out+="<img src='images/"+SharingPopup.sites.websites[i].value+"-1.png' class='f social-logo' />"
                 out+="<span class='f'>"+SharingPopup.sites.websites[i].name+"</span>";
@@ -61,26 +69,12 @@ SharingPopup={
                     }
                     out+="</select>"
                     out+="</span>";
-                    out+="<input name='' type='text' class='f' />";
                 }
                 if(SharingPopup.sites.websites[i].value=="gmail"){
                     out+="<label class='f'>أرسل إلى</label>";
                     out+="<input  type='text' class='f gmail-text' id='to'/>";
                     contacts=JSON.parse(localStorage.gmailUserContact)
                     out+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
-                   /* out+="<select id='to' class='f'>";
-                    for(j=1;j<contacts.length;j++){
-                        var name=contacts[j].name;
-                        if(name==""){
-                            name=contacts[j].email;
-                        }
-                        for(k=0;k<contacts[j].email.length;k++){
-                            out+="<option value='"+contacts[j].email[k]+"'>";
-                            out+=name+" < " +contacts[j].email[k] + " >";
-                            out+="</option>";
-                        }
-                    }
-                    out+="</select>"*/
                     out+="<label class='f'>عنوان</label>";
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }

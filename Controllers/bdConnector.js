@@ -28,9 +28,29 @@ var dbDriver={
                 tx.executeSql("SELECT * FROM links", [],
                     function(tx, result) {
                         callback(result.rows);
-                        /*for(var i = 0; i < result.rows.length; i++) {
+                    /*for(var i = 0; i < result.rows.length; i++) {
                             alert(JSON.stringify(result.rows.item(i)));
                         }*/
+                    }, null);
+            }
+            );
+    },
+    deleteAll:function(callback){
+        dbDriver.db.transaction(
+            function(tx) {
+                tx.executeSql("delete FROM links", [],
+                    function(tx, result) {
+                        callback("eshta");
+                    }, null);
+            }
+            );
+    },
+    deleteSelected:function(id,callback){
+        dbDriver.db.transaction(
+            function(tx) {
+                tx.executeSql("delete FROM links where id="+id, [],
+                    function(tx, result) {
+                        callback("eshta");
                     }, null);
             }
             );

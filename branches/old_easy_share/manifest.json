@@ -15,7 +15,7 @@
     },
     "options_page":"views/option.html",
     "permissions": [
-        "contextMenus", "http://*/*","tabs","notifications"
+        "contextMenus", "http://*/*","tabs"
     ],
      "content_scripts": [
     {

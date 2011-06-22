@@ -1,16 +1,3 @@
-document.onmousemove = getMouseXY;
-var mouseX=0;
-var mouseY=0;
-function getMouseXY(e) {
-    mouseX = e.pageX
-    mouseY = e.pageY
-    if (mouseX < 0){
-        mouseX = 0
-    }
-    if (mouseY < 0){
-        mouseY = 0
-    }
-}
 essyShareScript={
     container:"",
     alpha :0,
@@ -40,11 +27,16 @@ essyShareScript={
     },
     showPopUp:function(onclickedcontext){
         if(!essyShareScript.container){
+            essyShareScript.container =document.createElement('div');
             onclickedcontext.img=essyShareScript.getimages();
-            essyShareScript.container  = document.createElement('div');
-            essyShareScript.container.setAttribute("class", "share-gredient-box share-f");
-            essyShareScript.container.setAttribute("id", "share-container-id");
-            essyShareScript.container.setAttribute("style", "direction:rtl;top: "+mouseY+"px;left: "+mouseX+"px; position: absolute");
+            var overlay= document.createElement('div');
+            overlay.setAttribute("style", "background: #000; opacity:.7;position: absolute; top: 0;left: 0;width: 100%;z-index: 100000; height:"+window.innerHeight+"px;");
+
+            
+            var containers  = document.createElement('div');
+            containers.setAttribute("class", "share-gredient-box share-f");
+            containers.setAttribute("id", "share-container-id");
+            containers.setAttribute("style", "direction:rtl;position: absolute;top: 50%;left: 39%;z-index: 2000000;");
 
             //close
             var close  = document.createElement('div');
@@ -121,13 +113,16 @@ essyShareScript={
                     onclickedcontext.su=document.getElementById('su').value;
                     onclickedcontext.from=document.getElementById('from').value;
                 }
+                onclickedcontext.msg=document.getElementById(onclickedcontext.value).value;
                 essyShareScript.sendrequest(onclickedcontext);
             }
                 
-            essyShareScript.container.appendChild(close);
-            essyShareScript.container.appendChild(header);
-            essyShareScript.container.appendChild(form);
-            essyShareScript.container.appendChild(button);
+            containers.appendChild(close);
+            containers.appendChild(header);
+            containers.appendChild(form);
+            containers.appendChild(button);
+            essyShareScript.container.appendChild(overlay);
+            essyShareScript.container.appendChild(containers);
             document.body.appendChild(essyShareScript.container);
         }
     },
@@ -136,7 +131,7 @@ essyShareScript={
         chrome.extension.sendRequest(json, sucess);
         function sucess(back){
             essyShareScript.fade(-1);
-            alert(back)
+        //  alert(back)
         }
     },
     fade:function(d){

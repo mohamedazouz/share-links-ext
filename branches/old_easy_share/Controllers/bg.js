@@ -74,7 +74,7 @@ ShareLinksBG={
         });
         chrome.tabs.create({
             url:redirectLink,
-            selected:true
+            selected:false
         });
     },
     Authenticate:function(count,link,handler){
@@ -255,7 +255,7 @@ ShareLinksBG={
                 data:json,
                 success:function(data){
                     console.log("done")
-                    alert("jkasdkjhadkjaksdhkadkhasd "+data)
+                   // alert("jkasdkjhadkjaksdhkadkhasd "+data)
                     back(data)
                 },
                 error:function(data){

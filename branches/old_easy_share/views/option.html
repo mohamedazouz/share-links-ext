@@ -7,10 +7,18 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="../Controllers/option.js"></script>
         <script type="text/javascript" src="../Controllers/data.js"></script>
+<!--        <script>
+            $(document).ready(function(){
+                $('.overlay').css('height' , $(window).height())
+
+            });
+        </script>-->
     </head>
 
     <body>
-
+        <div class="overlay" style="background: #000; opacity:.7;position: absolute; top: 0;left: 0;width: 100%; height: 100%;z-index: 50" id="loader">
+            <img src="images/ajax-loader.gif" class="f" style="position: absolute;z-index: 100; top: 50%; left: 45%;" />
+        </div>
         <div class="header">
             <img src="images/logo.png" class="f" />
             <a class="setteing-button f-r">مشاركات سابقة </a>
@@ -26,40 +34,40 @@
 
                 <div class="services-container" id="websites">
 
-<!--                    <div class="service f">
+                    <!--                    <div class="service f">
 
-                        <div class="service-logo">
-                            <img src="images/option-twitter.png" width="43" height="58" />
-                        </div>
-                        <div class="services-texts twitter">twitter</div>
-                        <input name="" type="submit" class="add-button" value="أضــــف"/>
-                    </div>
+                                            <div class="service-logo">
+                                                <img src="images/option-twitter.png" width="43" height="58" />
+                                            </div>
+                                            <div class="services-texts twitter">twitter</div>
+                                            <input name="" type="submit" class="add-button" value="أضــــف"/>
+                                        </div>
 
-                    <div class="service f">
-                        <div class="service-logo">
-                            <img src="images/option-facebook.png" width="43" height="58" />
-                        </div>
-                        <div class="services-texts facebook">Facebook</div>
-                        <input name="" type="submit" class="add-button" value="أضــــف"/>
-                    </div>
+                                        <div class="service f">
+                                            <div class="service-logo">
+                                                <img src="images/option-facebook.png" width="43" height="58" />
+                                            </div>
+                                            <div class="services-texts facebook">Facebook</div>
+                                            <input name="" type="submit" class="add-button" value="أضــــف"/>
+                                        </div>
 
-                    <div class="service f">
-                        <div class="service-logo">
-                            <img src="images/option-gmail.png" width="43" height="58" />
-                        </div>
-                        <div class="services-texts gmail">Gmail</div>
-                        <input name="" type="submit" class="add-button" value="أضــــف"/>
-                    </div>
+                                        <div class="service f">
+                                            <div class="service-logo">
+                                                <img src="images/option-gmail.png" width="43" height="58" />
+                                            </div>
+                                            <div class="services-texts gmail">Gmail</div>
+                                            <input name="" type="submit" class="add-button" value="أضــــف"/>
+                                        </div>
 
-                    <div class="nl"></div>-->
+                                        <div class="nl"></div>-->
                 </div>
                 <div style="text-align: center;">
                     <img src="images/line.png"/>
                 </div>
             </div>
-            <div class="f-r save-button">
-                <input name="" type="submit" class="add-button" value="حفظ"/>
-            </div>
+            <!--            <div class="f-r save-button">
+                            <input name="" type="submit" class="add-button" value="حفظ"/>
+                        </div>-->
         </div>
     </body>
 </html>

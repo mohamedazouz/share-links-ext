@@ -24,10 +24,11 @@ SharingHistory={
             alert("Please, Select Any Item to Delete");
             return;
         }
+        alert($("input:checked").length + " Items Deleted");
         $("input:checked").each(function(index){
             dbDriver.deleteSelected($(this).val(),function(response){
                 SharingHistory.show();
-                alert("Item Deleted");
+                //
             })
         })
     },

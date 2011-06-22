@@ -74,7 +74,7 @@ ShareLinksBG={
         });
         chrome.tabs.create({
             url:redirectLink,
-            selected:false
+            selected:true
         });
     },
     Authenticate:function(count,link,handler){

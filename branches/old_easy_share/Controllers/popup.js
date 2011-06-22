@@ -85,6 +85,9 @@ SharingPopup={
                 out+="</div>";
             }
         }
+        if(out==""){
+            out+="<a class='setteing-button f' href='option.html' target='blank' align='center'>إعدادات</a>"
+        }
         out+="<div class='nl'></div>"
         $("#websites").html(out)
     },

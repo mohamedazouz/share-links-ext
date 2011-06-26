@@ -9,9 +9,7 @@ ShareLinksBG={
         dbDriver.setup();
     },
     createMainContextMenu:function(){
-        if(localStorage.shortrightclick=="0"){
-            localStorage.shortrightclick=ShareLinksBG.createCopyshortContextMenu();
-        }
+        ShareLinksBG.createCopyshortContextMenu();
         createProperties={
             "title":"Easy Share",
             "contexts":["all"]

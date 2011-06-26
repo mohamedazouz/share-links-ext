@@ -6,7 +6,7 @@ essyShareScript={
         var image="";
         for(i=0;i<document.images.length;i++){
             image=document.images[i].src;
-            if(image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png"){
+            if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png" )&& image.indexOf("fbcdn.net")==-1){//The images associated with this domain "fbcdn.net" isn't always optimized for stream stories
                 break;
             }
         }
@@ -20,7 +20,7 @@ essyShareScript={
         var image="";
         for(i=0;i<document.images.length;i++){
             image=document.images[i].src;
-            if(image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png"){
+            if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){
                 return document.images[i].src;
             }
         }
@@ -28,7 +28,6 @@ essyShareScript={
     showPopUp:function(onclickedcontext){
         if(!essyShareScript.container){
             essyShareScript.container =document.createElement('div');
-            onclickedcontext.img=essyShareScript.getimages();
             var overlay= document.createElement('div');
             overlay.setAttribute("style", "background: #000; opacity:.7;position: absolute; top: 0;left: 0;width: 100%;z-index: 100000; height:"+window.innerHeight+"px;");
 
@@ -61,6 +60,7 @@ essyShareScript={
             form.setAttribute("class","share-fields");
             innerHtml="";
             if(onclickedcontext.type=="facebook"){
+                onclickedcontext.img=essyShareScript.getimages();
                 innerHtml="<label class='share-f'>أرسل إلى</label>";
                 innerHtml+="<span class='input-shadow share-f'>";
             

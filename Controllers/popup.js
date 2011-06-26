@@ -12,6 +12,10 @@ SharingPopup={
                     SharingPopup.sites=JSON.parse(localStorage.sharingStaticData);
                     background.ShareLinksBG.getPageImage();
                     SharingPopup.show();
+                }else
+                {
+                    out="<b>الصفحة غير قابلة للمشاركة لانها صفحة داخليه</b>"
+                    $("#websites").html(out)
                 }
             });
         })
@@ -86,7 +90,7 @@ SharingPopup={
             }
         }
         if(out==""){
-            out+="<a class='setteing-button f' href='option.html' target='blank' align='center'>إعدادات</a>"
+            out+="<b>لا توجد خدمات مختارة من فضلك إذهب الي الاعدادات لاختيار الخدمات المفضلة</b>"
         }
         out+="<div class='nl'></div>"
         $("#websites").html(out)

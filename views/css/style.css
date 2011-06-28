@@ -332,6 +332,7 @@ img {
     font:12px Tahoma, Geneva, sans-serif;
     margin-top:10px;
     padding: 3px 15px;
+	cursor:pointer;
 }
 .short-link{
     padding:0 10px;

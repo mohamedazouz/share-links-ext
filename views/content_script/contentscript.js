@@ -4,12 +4,25 @@ essyShareScript={
     endalpha : 95,
     getimage:function(){
         var image="";
-        for(i=0;i<document.images.length;i++){
-            image=document.images[i].src;
-            if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png" )&& image.indexOf("fbcdn.net")==-1){//The images associated with this domain "fbcdn.net" isn't always optimized for stream stories
-                break;
+        var link=window.location.href.split("/")[2];
+        if(link.indexOf("youtube.com")!=-1){
+            metaCollection =document.getElementsByTagName('meta');
+            for (i=0;i<metaCollection.length;i++) {
+                content=metaCollection[i].content;
+                if(content.substr(content.length-3, content.length) == "jpg"){
+                    image=content;
+                }
+            }
+        }else
+        {
+            for(i=0;i<document.images.length;i++){
+                image=document.images[i].src;
+                if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){//The images associated with this domain "fbcdn.net" isn't always optimized for stream stories
+                    break;
+                }
             }
         }
+
         json={
             "getimage":"ok",
             "image":image
@@ -20,7 +33,7 @@ essyShareScript={
         var image="";
         for(i=0;i<document.images.length;i++){
             image=document.images[i].src;
-            if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){
+            if((image.substr(image.length-3, image.length) == "jpg"||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){
                 return document.images[i].src;
             }
         }

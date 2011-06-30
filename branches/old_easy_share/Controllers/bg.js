@@ -253,7 +253,7 @@ ShareLinksBG={
                 data:json,
                 success:function(data){
                     console.log("done")
-                   // alert("jkasdkjhadkjaksdhkadkhasd "+data)
+                    // alert("jkasdkjhadkjaksdhkadkhasd "+data)
                     back(data)
                 },
                 error:function(data){
@@ -263,6 +263,15 @@ ShareLinksBG={
             })
         }
         dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
+    },
+    showValidatingMessage:function(type){
+        var x=chrome.extension.getViews({
+            type:"popup"
+        })
+        x[0].SharingPopup.showValidatingMessage(type)
+        //alert(JSON.stringify(x));
+        //setTimeout("x[0].SharingPopup.showValidatingMessage(type)",2*1000);
+        
     }
 }
 $(function(){

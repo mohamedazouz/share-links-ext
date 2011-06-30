@@ -24,7 +24,7 @@ SharingHistory={
             alert("Please, Select Any Item to Delete");
             return;
         }
-        alert($("input:checked").length + " Items Deleted");
+        alert( " تم حذف " +$("input:checked").length  + "مشاركة");
         $("input:checked").each(function(index){
             dbDriver.deleteSelected($(this).val(),function(response){
                 SharingHistory.show();
@@ -33,11 +33,10 @@ SharingHistory={
         })
     },
     deleteAll:function(){
-        var confirmMessage=confirm("Please, All Items will be Deleted");
+        var confirmMessage=confirm("سيتم حذف جميع المشاركات");
         if(confirmMessage){
             dbDriver.deleteAll(function(response){
                 SharingHistory.show();
-                alert("All Has been Items Deleted");
             })
         }
     }

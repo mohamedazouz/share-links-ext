@@ -83,6 +83,7 @@ SharingPopup={
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }
                 out+="<textarea id='"+SharingPopup.sites.websites[i].value+"' cols='' rows='' class='f'></textarea>";
+                out+="<label class='f' id='show-"+SharingPopup.sites.websites[i].value+"'></label>";
                 out+="<input type='submit' class='f-r' value='إرسال' onclick='SharingPopup.share(\""+SharingPopup.sites.websites[i].value+"\")'/>";
                 out+="</div>";
                 out+="</div>";
@@ -99,6 +100,7 @@ SharingPopup={
         json=SharingPopup.pageInfo;
         json.type=type
         json.msg=$("#"+type).val();
+        
         json.img=$("#page-pic").attr("src")
         if(type=="facebook"){
             json.pageId=$("#facebookPages").val();
@@ -109,9 +111,17 @@ SharingPopup={
             json.from=$("#from").val();
         }
         //alert(JSON.stringify(json))
+        $("#show-"+type).html("تم بنجاح");
+        //background.ShareLinksBG.showValidatingMessage(type)
         background.ShareLinksBG.share(json,function(response){
             console.log(response)
+            $("#show-"+type).html("");
+            
         })
+    },
+    showValidatingMessage:function(type){
+        setTimeout("$('#show-'+type).hide();",1000);
+         
     }
 
 }

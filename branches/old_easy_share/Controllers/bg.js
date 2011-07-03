@@ -240,10 +240,12 @@ ShareLinksBG={
             var url=SharingStaticData.gmailSendMessage;
             var msg = jsonData.msg  + "<br>"+ jsonData.url;
             to=jsonData.to;
-            to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
+            //to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
+            var messaageText="";
+            messaageText="Hey Dear this email sent you from "+jsonData.from +" would like to share the following link with you";
+            messaageText+=""
             json={
                 to:to,
-                from:jsonData.from,
                 su:jsonData.su,
                 msg:msg
             }
@@ -269,8 +271,8 @@ ShareLinksBG={
             type:"popup"
         })
         x[0].SharingPopup.showValidatingMessage(type)
-        //alert(JSON.stringify(x));
-        //setTimeout("x[0].SharingPopup.showValidatingMessage(type)",2*1000);
+    //alert(JSON.stringify(x));
+    //setTimeout("x[0].SharingPopup.showValidatingMessage(type)",2*1000);
         
     }
 }

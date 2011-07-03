@@ -13,7 +13,7 @@ SharingStaticData={
     gmailAuthTokenurl:"http://calendar.activedd.com/authsub/fetchtoken.htm",
 
     twitterUpdatestatus:"http://local.activedd.com/azouz/twitter_update.php",
-    gmailSendMessage:"http://local.activedd.com/azouz/email.php",
+    gmailSendMessage:"http://41.130.147.16:8080/GmailContactProxy/proxy/send.htm",
 
     gmailGetContactlistUrl:"http://41.130.147.16:8080/GmailContactProxy/proxy/getcontacts.htm",
     

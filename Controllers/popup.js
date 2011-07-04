@@ -63,11 +63,11 @@ SharingPopup={
                 out+="</p>";
                 out+="<div class='fields'>";
                 if(SharingPopup.sites.websites[i].value=="facebook"){
-                    out+="<label class='f'>أرسل إلى</label>";
+                    out+="<label class='f'>إلى</label>";
                     out+="<span class='input-shadow f'>";
                     out+="<select id='facebookPages' class='f'>";
                     userpages=JSON.parse(localStorage.userPages)
-                    out+="<option value='me'>My Wall</option>";
+                    out+="<option value='me'>صفحتى</option>";
                     for(j=0;j<userpages.length;j++){
                         out+="<option value='"+userpages[j].id+"'>"+userpages[j].name+"</option>";
                     }
@@ -75,11 +75,11 @@ SharingPopup={
                     out+="</span>";
                 }
                 if(SharingPopup.sites.websites[i].value=="gmail"){
-                    out+="<label class='f'>أرسل إلى</label>";
+                    out+="<label class='f'>إلى</label>";
                     out+="<input  type='text' class='f gmail-text' id='to'/>";
                     contacts=JSON.parse(localStorage.gmailUserContact)
                     out+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
-                    out+="<label class='f'>عنوان</label>";
+                    out+="<label class='f'>الموضوع</label>";
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }
                 out+="<textarea id='"+SharingPopup.sites.websites[i].value+"' cols='' rows='' class='f'></textarea>";

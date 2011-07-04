@@ -21,7 +21,7 @@ SharingHistory={
     },
     deleteSelected:function(){
         if($("input:checked").length==0){
-            alert("Please, Select Any Item to Delete");
+            alert("من فضلك قم باختيار احد المشاركات");
             return;
         }
         alert( " تم حذف " +$("input:checked").length  + "مشاركة");
@@ -33,7 +33,7 @@ SharingHistory={
         })
     },
     deleteAll:function(){
-        var confirmMessage=confirm("هل انت متأكد من إجراء الحذف?");
+        var confirmMessage=confirm("هل انت متأكد من إجراء الحذف؟");
         if(confirmMessage){
             dbDriver.deleteAll(function(response){
                 SharingHistory.show();

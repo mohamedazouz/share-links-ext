@@ -114,8 +114,12 @@ SharingPopup={
         $("#show-"+type).html("تم بنجاح");
         //background.ShareLinksBG.showValidatingMessage(type)
         background.ShareLinksBG.share(json,function(response){
-            console.log(response)
-            $("#show-"+type).html("");
+            out="";
+            if(response=="error"){
+                out="خطأ عاود مرة اخرة المحاولة"
+            }
+            console.log(response);
+            $("#show-"+type).html(out);
             
         })
     },

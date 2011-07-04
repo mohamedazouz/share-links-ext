@@ -208,8 +208,12 @@ ShareLinksBG={
                 description:jsonData.title,
                 picture:jsonData.img
             }, function(response) {
-                  console.log(JSON.stringify(response));
-                back(JSON.stringify(response) + "   " + jsonData.img)
+                out=response;
+                if(response.error){
+                    out="error";
+                }
+                  console.log(JSON.stringify(out));
+                back(JSON.stringify(out) + "   " + jsonData.img)
             });
         }
         if(jsonData.type=="twitter"){
@@ -238,16 +242,18 @@ ShareLinksBG={
         
         if(jsonData.type=="gmail"){
             var url=SharingStaticData.gmailSendMessage;
-            var msg = jsonData.msg  + "<br>"+ jsonData.url;
             to=jsonData.to;
-            //to=jsonData.to.substring(to.indexOf("<")+1,to.length-1);
             var messaageText="";
-            messaageText="Hey Dear this email sent you from "+jsonData.from +" would like to share the following link with you";
-            messaageText+=""
+            messaageText="Hello, this email sent you from \n\n"
+            messaageText+=jsonData.userName+" <"+jsonData.from +"> would like to share the following link with you\n\n"
+            messaageText+=jsonData.title + "\n";
+            messaageText+=jsonData.url + "\n";
+            messaageText+="He wrote you the following messages\"" +jsonData.msg+"\" \n\n\n\n";
+            messaageText+="\nBy Easy-Share Chrome Extension"
             json={
                 to:to,
-                su:jsonData.su,
-                msg:msg
+                su:"[Easy-Share Chrome Extension] "+jsonData.su,
+                msg:messaageText
             }
             $.ajax({
                 url:url,

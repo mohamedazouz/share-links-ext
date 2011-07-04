@@ -79,6 +79,7 @@ SharingPopup={
                     out+="<input  type='text' class='f gmail-text' id='to'/>";
                     contacts=JSON.parse(localStorage.gmailUserContact)
                     out+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
+                    out+="<input type='hidden' id='name-gmail' value='"+SharingPopup.sites.websites[i].userName+"'> ";
                     out+="<label class='f'>الموضوع</label>";
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }
@@ -109,6 +110,7 @@ SharingPopup={
             json.to=$("#to").val();
             json.su=$("#su").val();
             json.from=$("#from").val();
+            json.userName=$("#name-gmail").val();
         }
         //alert(JSON.stringify(json))
         $("#show-"+type).html("تم بنجاح");

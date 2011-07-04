@@ -33,7 +33,7 @@ SharingHistory={
         })
     },
     deleteAll:function(){
-        var confirmMessage=confirm("سيتم حذف جميع المشاركات");
+        var confirmMessage=confirm("هل انت متأكد من إجراء الحذف?");
         if(confirmMessage){
             dbDriver.deleteAll(function(response){
                 SharingHistory.show();

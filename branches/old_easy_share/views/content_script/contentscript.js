@@ -74,12 +74,12 @@ essyShareScript={
             innerHtml="";
             if(onclickedcontext.type=="facebook"){
                 onclickedcontext.img=essyShareScript.getimages();
-                innerHtml="<label class='share-f'>أرسل إلى</label>";
+                innerHtml="<label class='share-f'>إلى</label>";
                 innerHtml+="<span class='input-shadow share-f'>";
             
                 innerHtml+="<select name='' class='share-f'  id='facebookPages'>";
                 userpages=onclickedcontext.userpages;
-                innerHtml+="<option value='me'>My Wall</option>";
+                innerHtml+="<option value='me'>صفحتى</option>";
                 for(j=0;j<userpages.length;j++){
                     innerHtml+="<option value='"+userpages[j].id+"'>"+userpages[j].name+"</option>";
                 }
@@ -87,7 +87,7 @@ essyShareScript={
                 innerHtml+="</span>";
             }
             if(onclickedcontext.type=="gmail"){
-                innerHtml+="<label class='share-f'>أرسل إلى</label>";
+                innerHtml+="<label class='share-f'>إلى</label>";
                 contacts=onclickedcontext.contacts;
                 innerHtml+="<input type='text' id='to'> ";
                 /*innerHtml+="<select id='to' class='share-f'>";
@@ -103,7 +103,7 @@ essyShareScript={
                     }
                 }
                 innerHtml+="</select>"*/
-                innerHtml+="<label class='share-f'>عنوان</label>";
+                innerHtml+="<label class='share-f'>الموضوع</label>";
                 innerHtml+="<input  type='text' class='share-f gmail-text' id='su'/>"
                 innerHtml+="<input type='hidden' id='from' value='"+contacts[0].email+"'> ";
             }

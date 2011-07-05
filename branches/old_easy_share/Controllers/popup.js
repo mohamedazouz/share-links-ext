@@ -69,7 +69,7 @@ SharingPopup={
                     userpages=JSON.parse(localStorage.userPages)
                     out+="<option value='me'>صفحتى</option>";
                     for(j=0;j<userpages.length;j++){
-                        out+="<option value='"+userpages[j].id+"'>"+userpages[j].name+"</option>";
+                        out+="<option value='"+userpages[j].id+"="+userpages[j].access_token+"'>"+userpages[j].name+"</option>";
                     }
                     out+="</select>"
                     out+="</span>";

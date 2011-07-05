@@ -24,7 +24,7 @@ SharingHistory={
             alert("من فضلك قم باختيار احد المشاركات");
             return;
         }
-        var confirmMessage=confirm( " هل انت متأكد من إجراء حذف" +$("input:checked").length  + "مشاركة");
+        var confirmMessage=confirm( "مشاركة ؟ "+ $("input:checked").length + " هل انت متأكد من إجراء حذف ");
         if(confirmMessage){
             $("input:checked").each(function(index){
                 dbDriver.deleteSelected($(this).val(),function(response){

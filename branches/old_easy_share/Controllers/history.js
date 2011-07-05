@@ -24,13 +24,15 @@ SharingHistory={
             alert("من فضلك قم باختيار احد المشاركات");
             return;
         }
-        alert( " تم حذف " +$("input:checked").length  + "مشاركة");
-        $("input:checked").each(function(index){
-            dbDriver.deleteSelected($(this).val(),function(response){
-                SharingHistory.show();
+        var confirmMessage=confirm( " هل انت متأكد من إجراء حذف" +$("input:checked").length  + "مشاركة");
+        if(confirmMessage){
+            $("input:checked").each(function(index){
+                dbDriver.deleteSelected($(this).val(),function(response){
+                    SharingHistory.show();
                 //
+                })
             })
-        })
+        }
     },
     deleteAll:function(){
         var confirmMessage=confirm("هل انت متأكد من إجراء الحذف؟");

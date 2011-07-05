@@ -205,9 +205,18 @@ ShareLinksBG={
     },
     share:function(jsonData,back){
         if(jsonData.type=="facebook"){
-            token=JSON.parse(window.localStorage.access_token);
-            FB.api("/"+jsonData.pageId+"/feed",'post',{
-                access_token:token.access_token,
+            var token="";
+            var id="";
+            if(jsonData.pageId=="me"){
+                token=JSON.parse(window.localStorage.access_token).access_token;
+                id="me";
+            }else
+            {
+                token=jsonData.pageId.split("=")[1];
+                id=jsonData.pageId.split("=")[0];
+            }
+            FB.api("/"+id+"/feed",'post',{
+                access_token:token,
                 message:jsonData.msg,
                 link:jsonData.url,
                 description:jsonData.title,

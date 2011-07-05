@@ -213,12 +213,18 @@ ShareLinksBG={
                 description:jsonData.title,
                 picture:jsonData.img
             }, function(response) {
-                out=response;
                 if(response.error){
-                    out="error";
+                    ShareLinksBG.showSucessMessage(jsonData.type,"لقد تجاوزت عدد المشاركات المسموح بها من الفيس بوك");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
+                }else
+                {
+                    ShareLinksBG.showSucessMessage(jsonData.type,"تم بنجاح");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                 }
-                  console.log(JSON.stringify(out));
-                back(JSON.stringify(out) + "   " + jsonData.img)
+                  console.log(JSON.stringify(response));
+                back(JSON.stringify(response) + "   " + jsonData.img)
             });
         }
         if(jsonData.type=="twitter"){
@@ -236,10 +242,16 @@ ShareLinksBG={
                 data:json,
                 success:function(data){
                     console.log("done")
+                    ShareLinksBG.showSucessMessage(jsonData.type,"تم بنجاح");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                     back("done")
                 },
                 error:function(data){
                     console.log("error")
+                    ShareLinksBG.showSucessMessage(jsonData.type,"خطأ عاود مرة اخرة المحاولة");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                     back("error")
                 }
             })
@@ -267,15 +279,27 @@ ShareLinksBG={
                 success:function(data){
                     console.log("done")
                     // alert("jkasdkjhadkjaksdhkadkhasd "+data)
+                    ShareLinksBG.showSucessMessage(jsonData.type,"تم بنجاح");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                     back(data)
                 },
                 error:function(data){
                     console.log("error")
+                    ShareLinksBG.showSucessMessage(jsonData.type,"خطأ عاود مرة اخرة المحاولة");
+                    x=jsonData.type;
+                    setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                     back(data)
                 }
             })
         }
         dbDriver.insert(jsonData.url,jsonData.title ,new Date().toString(), jsonData.type)
+    },
+    showSucessMessage:function(type,message){
+        var x=chrome.extension.getViews({
+            type:"popup"
+        })
+        x[0].SharingPopup.showSucess(type,message);
     },
     showValidatingMessage:function(type){
         var x=chrome.extension.getViews({

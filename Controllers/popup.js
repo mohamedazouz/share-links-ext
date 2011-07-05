@@ -84,7 +84,7 @@ SharingPopup={
                     out+="<input  type='text' class='f gmail-text' id='su'/>"
                 }
                 out+="<textarea id='"+SharingPopup.sites.websites[i].value+"' cols='' rows='' class='f'></textarea>";
-                out+="<label class='f' id='show-"+SharingPopup.sites.websites[i].value+"'></label>";
+                out+="<div class='f' id='show-"+SharingPopup.sites.websites[i].value+"' style='padding: 5px 15px;'></div>";
                 out+="<input type='submit' class='f-r' value='إرسال' onclick='SharingPopup.share(\""+SharingPopup.sites.websites[i].value+"\")'/>";
                 out+="</div>";
                 out+="</div>";
@@ -96,6 +96,10 @@ SharingPopup={
         }
         out+="<div class='nl'></div>"
         $("#websites").html(out)
+    },
+    showSucess:function(type,message){
+        console.log(message)
+        $("#show-"+type).html(message);
     },
     share:function(type){
         json=SharingPopup.pageInfo;
@@ -113,16 +117,11 @@ SharingPopup={
             json.userName=$("#name-gmail").val();
         }
         //alert(JSON.stringify(json))
-        $("#show-"+type).html("تم بنجاح");
+        SharingPopup.showSucess(type,"انتظر");
         //background.ShareLinksBG.showValidatingMessage(type)
         background.ShareLinksBG.share(json,function(response){
             out="";
-            if(response=="error"){
-                out="خطأ عاود مرة اخرة المحاولة"
-            }
             console.log(response);
-            $("#show-"+type).html(out);
-            
         })
     },
     showValidatingMessage:function(type){

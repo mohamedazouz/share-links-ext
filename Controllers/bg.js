@@ -81,7 +81,6 @@ ShareLinksBG={
         }
         count=parseInt(count);
         if(count == 59){
-            window.localStorage.logged=false;
             return;
         }
         //        url=link
@@ -90,16 +89,22 @@ ShareLinksBG={
                 url:link,
                 dataType:'json',
                 success:function(res){
-                    if(res.oauth_token){ //twitter auth
-                        window.localStorage.twitter_access_token=JSON.stringify(res);
+                    if(res.status==404){
+                        window.setTimeout(function(){
+                            ShareLinksBG.Authenticate(count+1,link,handler);
+                        }, 1000 * 2);
                     }else{
-                        if(res.authToken){//gmail
-                            window.localStorage.gmailAuthToken=JSON.stringify(res);
-                        }else{//facebook auth
-                            window.localStorage.access_token=JSON.stringify(res);
+                        if(res.oauth_token){ //twitter auth
+                            window.localStorage.twitter_access_token=JSON.stringify(res);
+                        }else{
+                            if(res.authToken){//gmail
+                                window.localStorage.gmailAuthToken=JSON.stringify(res);
+                            }else{//facebook auth
+                                window.localStorage.access_token=JSON.stringify(res);
+                            }
                         }
+                        handler("done");
                     }
-                    handler("done");
                 },
                 error:function(){
                     if(count < 60){

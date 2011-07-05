@@ -249,7 +249,7 @@ ShareLinksBG={
                 },
                 error:function(data){
                     console.log("error")
-                    ShareLinksBG.showSucessMessage(jsonData.type,"خطأ عاود مرة اخرة المحاولة");
+                    ShareLinksBG.showSucessMessage(jsonData.type,"لقد تم إضافة هذه المشاركة من قبل");
                     x=jsonData.type;
                     setTimeout("ShareLinksBG.showSucessMessage(x,\"\")",2*1000);
                     back("error")

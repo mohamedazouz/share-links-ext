@@ -13,8 +13,8 @@ essyShareScript={
                     image=content;
                 }
             }
-        }else
-        {
+        }
+        if(image==""){
             for(i=0;i<document.images.length;i++){
                 image=document.images[i].src;
                 if((image.substr(image.length-3, image.length) == "jpg" ||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){//The images associated with this domain "fbcdn.net" isn't always optimized for stream stories
@@ -144,7 +144,7 @@ essyShareScript={
         chrome.extension.sendRequest(json, sucess);
         function sucess(back){
             essyShareScript.fade(-1);
-        //  alert(back)
+            //  alert(back)
         }
     },
     fade:function(d){

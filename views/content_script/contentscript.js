@@ -94,7 +94,7 @@ essyShareScript={
                 userpages=onclickedcontext.userpages;
                 innerHtml+="<option value='me'>صفحتى</option>";
                 for(j=0;j<userpages.length;j++){
-                    innerHtml+="<option value='"+userpages[j].id+"'>"+userpages[j].name+"</option>";
+                    innerHtml+="<option value='"+userpages[j].id+"="+userpages[j].access_token+"'>"+userpages[j].name+"</option>";
                 }
                 innerHtml+="</select>"
                 innerHtml+="</span>";

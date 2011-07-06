@@ -308,7 +308,9 @@ ShareLinksBG={
         var x=chrome.extension.getViews({
             type:"popup"
         })
-        x[0].SharingPopup.showSucess(type,message);
+        if(x.length>0){
+            x[0].SharingPopup.showSucess(type,message);
+        }
     },
     showValidatingMessage:function(type){
         var x=chrome.extension.getViews({

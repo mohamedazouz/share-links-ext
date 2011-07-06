@@ -1,3 +1,7 @@
+//metaCollection =document.getElementsByTagName('embed');
+//for (i=0;i<metaCollection.length;i++) {
+//    metaCollection[i].setAttribute("wmode","transparent");
+//}
 essyShareScript={
     container:"",
     alpha :0,
@@ -30,7 +34,16 @@ essyShareScript={
         chrome.extension.sendRequest(json,function(){});
     },
     getimages:function(id){
-        var image="";
+        var link=window.location.href.split("/")[2];
+        if(link.indexOf("youtube.com")!=-1){
+            metaCollection =document.getElementsByTagName('meta');
+            for (i=0;i<metaCollection.length;i++) {
+                content=metaCollection[i].content;
+                if(content.substr(content.length-3, content.length) == "jpg"){
+                    return content;
+                }
+            }
+        }
         for(i=0;i<document.images.length;i++){
             image=document.images[i].src;
             if((image.substr(image.length-3, image.length) == "jpg"||image.substr(image.length-3, image.length) == "png")&& image.indexOf("fbcdn.net")==-1){
@@ -111,6 +124,13 @@ essyShareScript={
             innerHtml+="</div>";
             form.innerHTML=innerHtml;
 
+            var messagevalidation  = document.createElement('div');
+            messagevalidation.setAttribute("class", "f");
+            messagevalidation.setAttribute("style", "padding: 5px 15px;");
+            messagevalidation.setAttribute("id", "show");
+            messagevalidation.innerHTML=""
+
+
             //button submit to share
             var button  = document.createElement('input');
             button.setAttribute("type", "submit");
@@ -118,33 +138,48 @@ essyShareScript={
             button.setAttribute("value", "إرسال");
 
             button.onclick=function(){
+                var flg=1;
                 if(onclickedcontext.type=="facebook"){
                     onclickedcontext.pageId=document.getElementById('facebookPages').value;
                 }
                 if(onclickedcontext.type=="gmail"){
+                    if(document.getElementById('to').value == "" ){
+                        flg=-1
+                    }
                     onclickedcontext.to=document.getElementById('to').value;
                     onclickedcontext.su=document.getElementById('su').value;
                     onclickedcontext.from=document.getElementById('from').value;
                 }
-                onclickedcontext.msg=document.getElementById(onclickedcontext.value).value;
-                essyShareScript.sendrequest(onclickedcontext);
+                if(flg==1){
+                    onclickedcontext.msg=document.getElementById(onclickedcontext.value).value;
+                    essyShareScript.sendrequest(onclickedcontext);
+                }else
+                {
+                    essyShareScript.showMessage("خطأ حاول مرة اخرى");
+                    setTimeout("essyShareScript.showMessage(\"\")",2*1000);
+                    
+                }
             }
                 
             containers.appendChild(close);
             containers.appendChild(header);
             containers.appendChild(form);
+            containers.appendChild(messagevalidation);
             containers.appendChild(button);
             essyShareScript.container.appendChild(overlay);
             essyShareScript.container.appendChild(containers);
             document.body.appendChild(essyShareScript.container);
         }
     },
+    showMessage:function(message){
+        document.getElementById("show").innerHTML=message;
+    } ,
     sendrequest:function(json){
         json.share="done";
+        essyShareScript.showMessage("انتظر");
         chrome.extension.sendRequest(json, sucess);
         function sucess(back){
             essyShareScript.fade(-1);
-            //  alert(back)
         }
     },
     fade:function(d){

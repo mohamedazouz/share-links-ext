@@ -248,6 +248,7 @@ ShareLinksBG={
             $.ajax({
                 url:url,
                 dataType: "html",
+                contentType:"text/html;charset=UTF-8",
                 data:json,
                 success:function(data){
                     console.log("done")
@@ -274,13 +275,14 @@ ShareLinksBG={
             messaageText+=jsonData.userName+" <"+jsonData.from +"> would like to share the following link with you\n\n"
             messaageText+=jsonData.title + "\n";
             messaageText+=jsonData.url + "\n";
-            messaageText+="He wrote you the following messages\"" +jsonData.msg+"\" \n\n\n\n";
-            messaageText+="\nBy Easy-Share Chrome Extension"
+            messaageText+="He wrote you the following messages\"" +encodeURIComponent(jsonData.msg)+"\" \n\n\n\n";
+            messaageText+="\nBy Easy-Share Chrome Extension";
             json={
                 to:to,
-                su:"[Easy-Share Chrome Extension] "+jsonData.su,
+                su:"[Easy-Share Chrome Extension] "+encodeURIComponent(jsonData.su),
                 msg:messaageText
             }
+           // alert(JSON.stringify(json));
             $.ajax({
                 url:url,
                 dataType: "html",

@@ -2,6 +2,11 @@
 //for (i=0;i<metaCollection.length;i++) {
 //    metaCollection[i].setAttribute("wmode","transparent");
 //}
+shareyoutubeflag=0;
+var link=window.location.href.split("/")[2];
+if(link.indexOf("youtube.com")!=-1){
+    shareyoutubeflag=1;
+}
 essyShareScript={
     container:"",
     alpha :0,
@@ -61,7 +66,12 @@ essyShareScript={
             var containers  = document.createElement('div');
             containers.setAttribute("class", "share-gredient-box share-f");
             containers.setAttribute("id", "share-container-id");
-            containers.setAttribute("style", "direction:rtl;position: absolute;top: 50%;left: 39%;z-index: 2000000;");
+            left="39%";
+            if(shareyoutubeflag==1){
+                left="65%";
+                shareyoutubeflag=0;
+            }
+            containers.setAttribute("style", "direction:rtl;position: absolute;top: 50%;left: "+left+";z-index: 2000000;");
 
             //close
             var close  = document.createElement('div');
@@ -201,6 +211,7 @@ essyShareScript={
             }
         
         }
+        document.body.removeChild(essyShareScript.container);
         essyShareScript.container=null;
     }
 }

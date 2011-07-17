@@ -4,7 +4,7 @@ SharingHistory={
         SharingHistory.show();
     },
     show:function(){
-        out="<div class='tit'>History</div>";
+        out="<div class='tit'>مشاركات سابقة</div>";
         dbDriver.selectAll(function(response){
             for(i=0;i<response.length;i++)
             {
@@ -12,7 +12,7 @@ SharingHistory={
                 out+="<input type='checkbox' value='"+response.item(i).id+"' class='f' name='historyItem'/>";
                 out+="<img src='images/"+response.item(i).type+".png' class='f'/>";
                 out+="<a class='f'>"+response.item(i).title+"</a><br />";
-                out+="<a class='f history-box-link'>"+response.item(i).link+"</a>";
+                out+="<a class='f history-box-link' href='"+response.item(i).link+"' target='blank'>"+response.item(i).link+"</a>";
                 out+="</label>";
                 
             }
@@ -41,6 +41,30 @@ SharingHistory={
                 SharingHistory.show();
             })
         }
+    },
+    search:function(){
+        if($("#keyword").val()!=""){
+            dbDriver.search($("#keyword").val(), function(response){
+                SharingHistory.showSearch(response);
+            })
+        }
+    },
+    showSearch:function(response){
+        out="<div class='tit'>البحث</div>";
+        if(response.length==0){
+            out+="لا يوجد نتائج لبحثك فى المشاركات السابقة";
+        }
+        for(i=0;i<response.length;i++)
+        {
+            out+="<label class='f'>";
+            out+="<input type='checkbox' value='"+response.item(i).id+"' class='f' name='historyItem'/>";
+            out+="<img src='images/"+response.item(i).type+".png' class='f'/>";
+            out+="<a class='f'>"+response.item(i).title+"</a><br />";
+            out+="<a class='f history-box-link' href='"+response.item(i).link+"' target='blank'>"+response.item(i).link+"</a>";
+            out+="</label>";
+        }
+        out+="<p><a href='#' onclick='SharingHistory.show()'>اغلق البحث</a></p>"
+        $("#history").html(out);
     }
 }
 

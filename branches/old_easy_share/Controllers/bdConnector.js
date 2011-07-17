@@ -54,6 +54,16 @@ var dbDriver={
                     }, null);
             }
             );
+    },
+    search:function(word,callback){
+        dbDriver.db.transaction(
+            function(tx) {
+                tx.executeSql("select * FROM links where title like '%"+word+"%'", [],
+                    function(tx, result) {
+                        callback(result.rows);
+                    }, null);
+            }
+            );
     }
 }
 

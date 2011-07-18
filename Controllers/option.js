@@ -39,10 +39,12 @@ SharingOptions={
         $("#loader").show();
         SharingOptions.open(SharingOptions.sites.websites[i].value,function(data){
             $("#loader").hide();
-            pId= parseInt(localStorage.sharingParentID);
-            SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
-            SharingOptions.sites.websites[i].userName=data;
-            background.ShareLinksBG.setData(SharingOptions.sites);
+            if(data!=-1){
+                pId= parseInt(localStorage.sharingParentID);
+                SharingOptions.sites.websites[i].contextMenuId=background.ShareLinksBG.createContextMenu(site.name,pId);
+                SharingOptions.sites.websites[i].userName=data;
+                background.ShareLinksBG.setData(SharingOptions.sites);
+            }
             SharingOptions.show();
         });
     },
@@ -51,7 +53,19 @@ SharingOptions={
         chrome.contextMenus.remove(SharingOptions.sites.websites[i].contextMenuId);
         SharingOptions.sites.websites[i].contextMenuId=-1;
         background.ShareLinksBG.setData(SharingOptions.sites);
-        SharingOptions.show()
+        if(site.value=="facebook"){
+            window.localStorage.removeItem("userInfo");
+            window.localStorage.removeItem("access_token");
+            window.localStorage.removeItem("userPages");
+        }
+        if(site.value=="twitter"){
+            window.localStorage.removeItem("twitter_access_token");
+        }
+        if(site.value=="gmail"){
+            window.localStorage.removeItem("gmailAuthToken");
+            window.localStorage.removeItem("gmailUserContact");
+        }
+        SharingOptions.show();
     },
     open:function(type,handler){
         var redirecturl;
@@ -60,9 +74,13 @@ SharingOptions={
             redirecturl=SharingStaticData.facebookRedirecturl;
             tokenurl=SharingStaticData.facebookAuthTokenurl;
             background.ShareLinksBG.open(redirecturl,tokenurl,function(data){
-                background.ShareLinksBG.getFacebookUserInfo(window.localStorage.access_token,function(response){
-                    handler(response);
-                });
+                if(JSON.parse(window.localStorage.access_token).access_token=="-1"){
+                    handler(-1);
+                }else{
+                    background.ShareLinksBG.getFacebookUserInfo(window.localStorage.access_token,function(response){
+                        handler(response);
+                    });
+                }
             });
         }
         if(type=="twitter"){

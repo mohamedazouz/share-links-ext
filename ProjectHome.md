@@ -1,0 +1,1 @@
+extension which allow chrome web browser to share text and urls in social networks,
